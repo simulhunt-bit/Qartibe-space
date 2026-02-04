@@ -1,0 +1,415 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Qartibe Space - Digital Growth Partner</title>
+    <meta
+      name="description"
+      content="Qartibe Space is a digital agency for Meta ads, e-commerce growth, content design, and SEO."
+    />
+    <meta name="theme-color" content="#0B0F19" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap");
+      :root {
+        --bg: #0b1220;
+        --card: #121a2b;
+        --text: #e6edf7;
+        --muted: #97a3b8;
+        --accent: #2f7cf6;
+        --accent-strong: #1b5fd6;
+        --border: #1f2a44;
+      }
+      * {
+        box-sizing: border-box;
+      } 
+      body {
+        margin: 0;
+        font-family: "Sora", "Segoe UI", Arial, sans-serif;
+        background: radial-gradient(1000px 600px at 10% -10%, rgba(47, 124, 246, 0.25), transparent),
+          radial-gradient(800px 500px at 90% 0%, rgba(27, 95, 214, 0.18), transparent),
+          linear-gradient(180deg, #0b1220 0%, #0a111e 60%, #0b1220 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.02em;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .container {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        background: rgba(11, 15, 25, 0.9);
+        backdrop-filter: blur(6px);
+        overflow: hidden;
+      }
+      .nav::before,
+      .nav::after {
+        content: "";
+        position: absolute;
+        inset: -40% -10%;
+        background: radial-gradient(500px 120px at 20% 0%, rgba(47, 124, 246, 0.35), transparent),
+          radial-gradient(500px 120px at 80% 0%, rgba(124, 92, 255, 0.25), transparent);
+        opacity: 0.6;
+        animation: headerGlow 12s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .nav::after {
+        animation-delay: -6s;
+        opacity: 0.4;
+      }
+      @keyframes headerGlow {
+        0% { transform: translateX(-6%) translateY(0); }
+        50% { transform: translateX(6%) translateY(4%); }
+        100% { transform: translateX(-6%) translateY(0); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .nav::before,
+        .nav::after {
+          animation: none;
+        }
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 12px 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand-name {
+        font-weight: 600;
+        letter-spacing: 0.2px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 20px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .nav-links a:hover {
+        color: var(--text);
+      }
+      .btn {
+        display: inline-block;
+        padding: 10px 16px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+        color: white;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 600;
+        box-shadow: 0 10px 22px rgba(47, 124, 246, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        transition: transform 150ms ease, box-shadow 150ms ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 26px rgba(47, 124, 246, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+      }
+      .btn:active {
+        transform: translateY(0);
+        box-shadow: 0 8px 18px rgba(47, 124, 246, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+      }
+      .btn-outline {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text);
+        box-shadow: none;
+      }
+      .section {
+        padding: 48px 0;
+      }
+      .card {
+        border: 1px solid var(--border);
+        background: var(--card);
+        border-radius: 16px;
+        padding: 20px;
+      }
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+      .grid-2 {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .services-row {
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        scroll-snap-type: x mandatory;
+      }
+      .services-row {
+        scroll-behavior: smooth;
+      }
+      .services-row::-webkit-scrollbar {
+        height: 8px;
+      }
+      .services-row::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 999px;
+      }
+      .services-card {
+        min-width: 260px;
+        scroll-snap-align: start;
+      }
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 24px 0;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .input,
+      .textarea {
+        width: 100%;
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--text);
+        font-family: inherit;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="container nav-inner">
+        <div class="brand">
+          <img
+            src="logo.png"
+            alt="Qartibe Space logo"
+            width="28"
+            height="28"
+            style="display:block;border-radius:50%;background:var(--accent);"
+          />
+          <span class="brand-name">Qartibe Space</span>
+        </div>
+        <nav class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="section">
+        <div class="grid grid-2">
+          <div>
+            <h1>Digital growth partner for e-commerce and top-up brands</h1>
+            <p class="muted">
+              We combine Meta Ads, payment support, social content design, video ad editing,
+              e-commerce SEO, and blog writing to grow revenue, reduce checkout friction, and
+              build long-term demand.
+            </p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <a class="btn" href="#contact">Start a project</a>
+              <a class="btn btn-outline" href="#services">View services</a>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Growth Snapshot</h3>
+            <p class="muted">
+              Meta Ads + payment support, social content, video ads, SEO, and blogs working
+              together to deliver compounding results.
+            </p>
+            <div class="grid grid-2">
+              <div class="card" style="padding:12px;">
+                <strong>Paid Growth</strong>
+                <p class="muted">Creative testing + conversion fixes.</p>
+              </div>
+              <div class="card" style="padding:12px;">
+                <strong>Organic Growth</strong>
+                <p class="muted">SEO + blogs that compound.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section">
+        <h2>Services</h2>
+        <div class="services-row">
+          <div class="card services-card">
+            <h3>Meta Ads + Payment Support</h3>
+            <p class="muted">
+              Full-funnel Meta campaigns with conversion tracking, creative testing, and
+              checkout/payment support to reduce drop-off for e-commerce and top-up flows.
+            </p>
+          </div>
+          <div class="card services-card">
+            <h3>Social Media Content Design</h3>
+            <p class="muted">
+              Branded post systems, carousel templates, and campaign visuals that keep your
+              feed consistent and drive engagement.
+            </p>
+          </div>
+          <div class="card services-card">
+            <h3>Video Ads Editing</h3>
+            <p class="muted">
+              Short-form ad editing with strong hooks, captions, and clear CTAs optimized for
+              Meta placements.
+            </p>
+          </div>
+          <div class="card services-card">
+            <h3>E-commerce SEO</h3>
+            <p class="muted">
+              Keyword research, category and product page optimization, and technical fixes
+              to grow high-intent search traffic.
+            </p>
+          </div>
+          <div class="card services-card">
+            <h3>Blog Writing</h3>
+            <p class="muted">
+              Search-driven articles that educate buyers, answer questions, and build topical
+              authority over time.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <h2>Why Choose Us</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Performance-first Meta Ads</h3>
+            <p class="muted">
+              We plan, launch, and optimize Meta campaigns with clear KPIs, creative testing,
+              and weekly insights.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Payment Support that converts</h3>
+            <p class="muted">
+              We troubleshoot payment issues and improve checkout UX so paid traffic turns into
+              completed orders.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Content that sells</h3>
+            <p class="muted">
+              Social content design and video ad editing tailored to your audience and product
+              benefits.
+            </p>
+          </div>
+          <div class="card">
+            <h3>SEO and Blogs that compound</h3>
+            <p class="muted">
+              We optimize product/category pages and publish blogs that grow visibility over time.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="careers" class="section">
+        <h2>Jobs & Careers</h2>
+        <p class="muted">
+          Share your portfolio link, CV, and email. All fields are required.
+        </p>
+        <form
+          class="card"
+          style="margin-top:16px;"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+        >
+          <input type="hidden" name="access_key" value="ac97bac0-9a10-47aa-8a0b-61c956ecdf01" />
+          <input type="hidden" name="subject" value="New Careers Submission - Qartibe Space" />
+          <label style="display:block;margin-top:8px;font-weight:600;">
+            Full Name
+            <input class="input" type="text" name="full_name" placeholder="Your full name" required />
+          </label>
+          <label style="display:block;margin-top:12px;font-weight:600;">
+            Email
+            <input class="input" type="email" name="email" placeholder="you@email.com" required />
+          </label>
+          <label style="display:block;margin-top:12px;font-weight:600;">
+            Portfolio Link
+            <input class="input" type="url" name="portfolio" placeholder="https://your-portfolio.com" required />
+          </label>
+          <label style="display:block;margin-top:12px;font-weight:600;">
+            CV Link
+            <input class="input" type="url" name="cv" placeholder="https://drive.google.com/your-cv" required />
+          </label>
+          <button class="btn" type="submit" style="margin-top:12px;">Submit Application</button>
+        </form>
+      </section>
+
+      <section id="contact" class="section">
+        <h2>Contact</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>How we can help</h3>
+            <p class="muted">
+              Meta Ads + payment support, social content design, video ads editing,
+              e-commerce SEO, and blog writing.
+            </p>
+          </div>
+          <div class="card">
+            <p><strong>Email:</strong> support@qartibe.space</p>
+            <p><strong>Location:</strong> Remote</p>
+            <p><strong>Availability:</strong> Open for new projects</p>
+          </div>
+        </div>
+        <form
+          class="card"
+          style="margin-top:16px;"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+        >
+          <input type="hidden" name="access_key" value="ac97bac0-9a10-47aa-8a0b-61c956ecdf01" />
+          <input type="hidden" name="subject" value="New Contact Submission - Qartibe Space" />
+          <strong>Contact Submit</strong>
+          <p class="muted" style="margin-top:6px;">Tell us what you need and we’ll reply.</p>
+          <input class="input" type="text" name="name" placeholder="Your name" required />
+          <input class="input" type="email" name="email" placeholder="Email" required />
+          <textarea class="textarea" name="message" rows="3" placeholder="Project details" required></textarea>
+          <button class="btn" type="submit" style="margin-top:10px;">Submit</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        © 2026 Qartibe Space. All rights reserved.
+      </div>
+    </footer>
+    <script>
+      const servicesRow = document.querySelector(".services-row");
+      if (servicesRow) {
+        servicesRow.addEventListener(
+          "wheel",
+          (event) => {
+            if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
+              event.preventDefault();
+              servicesRow.scrollLeft += event.deltaY;
+            }
+          },
+          { passive: false }
+        );
+      }
+    </script>
+  </body>
+</html>
