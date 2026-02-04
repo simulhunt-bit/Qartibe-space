@@ -592,6 +592,7 @@
         heroVideo.playsInline = true;
         heroVideo.loop = true;
         heroVideo.preload = "metadata";
+        heroVideo.autoplay = true;
         heroVideo.playbackRate = 1;
         const tryPlay = () => {
           const playPromise = heroVideo.play();
@@ -599,14 +600,15 @@
             playPromise.catch(() => {});
           }
         };
-        heroVideo.addEventListener("canplay", tryPlay, { once: true });
+        heroVideo.addEventListener("canplay", tryPlay);
         document.addEventListener("visibilitychange", () => {
           if (!document.hidden) {
             tryPlay();
           }
         });
-        window.addEventListener("load", tryPlay, { once: true });
+        window.addEventListener("load", tryPlay);
         document.addEventListener("click", tryPlay, { once: true });
+        setTimeout(tryPlay, 200);
       }
 
       const servicesRow = document.querySelector(".services-row");
