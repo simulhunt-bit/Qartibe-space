@@ -1,27 +1,43 @@
 <!doctype html>
-<html lang="en">
+<html lang="bn">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Qartibe Space - Digital Growth Partner</title>
+    <title data-bn="Qartibe Space - ডিজিটাল গ্রোথ পার্টনার" data-en="Qartibe Space - Digital Growth Partner">Qartibe Space - ডিজিটাল গ্রোথ পার্টনার</title>
     <meta
       name="description"
-      content="Qartibe Space is a digital agency for Meta ads, e-commerce growth, content design, and SEO."
+      content="Qartibe Space একটি ডিজিটাল এজেন্সি যেখানে Meta ads, e-commerce growth, content design, এবং SEO সেবা দেওয়া হয়।"
+      data-bn="Qartibe Space একটি ডিজিটাল এজেন্সি যেখানে Meta ads, e-commerce growth, content design, এবং SEO সেবা দেওয়া হয়।"
+      data-en="Qartibe Space is a digital agency for Meta ads, e-commerce growth, content design, and SEO."
     />
-    <meta name="keywords" content="Qartibe Space, digital agency, Meta ads, ecommerce growth, content design, SEO, video ads, Bangladesh" />
+    <meta name="keywords" content="Qartibe Space, ডিজিটাল এজেন্সি, Meta ads, ecommerce growth, content design, SEO, video ads, Bangladesh" />
     <meta name="author" content="Qartibe Space" />
-    <meta property="og:title" content="Qartibe Space - Digital Growth Partner" />
+    <meta
+      property="og:title"
+      content="Qartibe Space - ডিজিটাল গ্রোথ পার্টনার"
+      data-bn="Qartibe Space - ডিজিটাল গ্রোথ পার্টনার"
+      data-en="Qartibe Space - Digital Growth Partner"
+    />
     <meta
       property="og:description"
-      content="Qartibe Space is a digital agency for Meta ads, e-commerce growth, content design, and SEO."
+      content="Qartibe Space একটি ডিজিটাল এজেন্সি যেখানে Meta ads, e-commerce growth, content design, এবং SEO সেবা দেওয়া হয়।"
+      data-bn="Qartibe Space একটি ডিজিটাল এজেন্সি যেখানে Meta ads, e-commerce growth, content design, এবং SEO সেবা দেওয়া হয়।"
+      data-en="Qartibe Space is a digital agency for Meta ads, e-commerce growth, content design, and SEO."
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="favicon.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Qartibe Space - Digital Growth Partner" />
+    <meta
+      name="twitter:title"
+      content="Qartibe Space - ডিজিটাল গ্রোথ পার্টনার"
+      data-bn="Qartibe Space - ডিজিটাল গ্রোথ পার্টনার"
+      data-en="Qartibe Space - Digital Growth Partner"
+    />
     <meta
       name="twitter:description"
-      content="Qartibe Space is a digital agency for Meta ads, e-commerce growth, content design, and SEO."
+      content="Qartibe Space একটি ডিজিটাল এজেন্সি যেখানে Meta ads, e-commerce growth, content design, এবং SEO সেবা দেওয়া হয়।"
+      data-bn="Qartibe Space একটি ডিজিটাল এজেন্সি যেখানে Meta ads, e-commerce growth, content design, এবং SEO সেবা দেওয়া হয়।"
+      data-en="Qartibe Space is a digital agency for Meta ads, e-commerce growth, content design, and SEO."
     />
     <meta name="twitter:image" content="favicon.png" />
     <meta name="theme-color" content="#0B0F19" />
@@ -146,6 +162,31 @@
         font-weight: 600;
         box-shadow: 0 10px 22px rgba(47, 124, 246, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
         transition: transform 150ms ease, box-shadow 150ms ease;
+      }
+      .lang-en {
+        display: none;
+      }
+      body.show-en .lang-en {
+        display: inline;
+      }
+      body.show-en .lang-bn {
+        display: none;
+      }
+      .lang-toggle {
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        border-radius: 999px;
+        font-size: 12px;
+        padding: 6px 10px;
+        line-height: 1;
+        cursor: pointer;
+        transition: transform 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+      }
+      .lang-toggle:hover {
+        transform: translateY(-1px);
+        border-color: rgba(47, 124, 246, 0.6);
+        box-shadow: 0 10px 18px rgba(5, 10, 20, 0.35);
       }
       .btn:hover {
         transform: translateY(-1px);
@@ -396,12 +437,13 @@
             style="display:block;border-radius:50%;background:#ffffff;"
           />
           <span class="brand-name">Qartibe Space</span>
+          <button class="lang-toggle" type="button" aria-pressed="false">B / E</button>
         </div>
         <nav class="nav-links">
-          <a href="#services">Services</a>
-          <a href="projects.html">Projects</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+          <a href="#services"><span class="lang-bn">সেবা</span><span class="lang-en">Services</span></a>
+          <a href="projects.html"><span class="lang-bn">প্রজেক্টস</span><span class="lang-en">Projects</span></a>
+          <a href="#about"><span class="lang-bn">আমাদের সম্পর্কে</span><span class="lang-en">About</span></a>
+          <a href="#contact"><span class="lang-bn">যোগাযোগ</span><span class="lang-en">Contact</span></a>
         </nav>
       </div>
     </header>
@@ -421,31 +463,33 @@
         <div class="hero-content">
           <div class="grid grid-2">
             <div>
-              <h1>Digital growth partner for e-commerce and top-up brands</h1>
+              <h1>
+                <span class="lang-bn">ই-কমার্স ও টপ-আপ ব্র্যান্ডের জন্য ডিজিটাল গ্রোথ পার্টনার</span>
+                <span class="lang-en">Digital growth partner for e-commerce and top-up brands</span>
+              </h1>
               <p class="muted">
-                We combine Meta Ads, payment support, social content design, video ad editing,
-                e-commerce SEO, and blog writing to grow revenue, reduce checkout friction, and
-                build long-term demand.
+                <span class="lang-bn">আমরা মেটা অ্যাডস, পেমেন্ট সাপোর্ট, সোশ্যাল কনটেন্ট ডিজাইন, ভিডিও অ্যাডস এডিটিং, ই-কমার্স এসইও, এবং ব্লগ রাইটিং একসাথে ব্যবহার করি — রাজস্ব বৃদ্ধি, চেকআউট বাধা কমানো, এবং দীর্ঘমেয়াদি চাহিদা তৈরি করতে।</span>
+                <span class="lang-en">We combine Meta Ads, payment support, social content design, video ad editing, e-commerce SEO, and blog writing to grow revenue, reduce checkout friction, and build long-term demand.</span>
               </p>
               <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                <a class="btn" href="#contact">Start a project</a>
-                <a class="btn btn-outline" href="#services">View services</a>
+                <a class="btn" href="#contact"><span class="lang-bn">প্রজেক্ট শুরু করুন</span><span class="lang-en">Start a project</span></a>
+                <a class="btn btn-outline" href="#services"><span class="lang-bn">সেবা দেখুন</span><span class="lang-en">View services</span></a>
               </div>
             </div>
             <div class="card">
-              <h3>Growth Snapshot</h3>
+              <h3><span class="lang-bn">গ্রোথ স্ন্যাপশট</span><span class="lang-en">Growth Snapshot</span></h3>
               <p class="muted">
-                Meta Ads + payment support, social content, video ads, SEO, and blogs working
-                together to deliver compounding results.
+                <span class="lang-bn">মেটা অ্যাডস + পেমেন্ট সাপোর্ট, সোশ্যাল কনটেন্ট, ভিডিও অ্যাডস, এসইও, এবং ব্লগ একসাথে কাজ করে কম্পাউন্ডিং ফলাফল দেয়।</span>
+                <span class="lang-en">Meta Ads + payment support, social content, video ads, SEO, and blogs working together to deliver compounding results.</span>
               </p>
               <div class="grid grid-2">
                 <div class="card" style="padding:12px;">
-                  <strong>Paid Growth</strong>
-                  <p class="muted">Creative testing + conversion fixes.</p>
+                  <strong><span class="lang-bn">পেইড গ্রোথ</span><span class="lang-en">Paid Growth</span></strong>
+                  <p class="muted"><span class="lang-bn">ক্রিয়েটিভ টেস্টিং + কনভার্সন ফিক্স।</span><span class="lang-en">Creative testing + conversion fixes.</span></p>
                 </div>
                 <div class="card" style="padding:12px;">
-                  <strong>Organic Growth</strong>
-                  <p class="muted">SEO + blogs that compound.</p>
+                  <strong><span class="lang-bn">অর্গানিক গ্রোথ</span><span class="lang-en">Organic Growth</span></strong>
+                  <p class="muted"><span class="lang-bn">এসইও + ব্লগ যা সময়ের সাথে বাড়ে।</span><span class="lang-en">SEO + blogs that compound.</span></p>
                 </div>
               </div>
             </div>
@@ -455,123 +499,124 @@
 
       <section class="section">
         <div class="card">
-          <h2>AI Website Launch</h2>
+          <h2><span class="lang-bn">এআই ওয়েবসাইট লঞ্চ</span><span class="lang-en">AI Website Launch</span></h2>
           <p class="muted">
-            AI-assisted static websites and portfolio builds, plus custom domain setup and
-            hosting on GitHub Pages, Blogger, or Google Sites.
+            <span class="lang-bn">এআই-অ্যাসিস্টেড স্ট্যাটিক ওয়েবসাইট এবং পোর্টফোলিও বিল্ড, সাথে কাস্টম ডোমেইন সেটআপ এবং গিটহাব পেজেস, ব্লগার, অথবা গুগল সাইটস এ হোস্টিং।</span>
+            <span class="lang-en">AI-assisted static websites and portfolio builds, plus custom domain setup and hosting on GitHub Pages, Blogger, or Google Sites.</span>
           </p>
           <div style="display:flex;gap:12px;flex-wrap:wrap;">
-            <a class="btn" href="projects.html">See projects</a>
-            <a class="btn btn-outline" href="#contact">Request a quote</a>
+            <a class="btn" href="projects.html"><span class="lang-bn">প্রজেক্ট দেখুন</span><span class="lang-en">See projects</span></a>
+            <a class="btn btn-outline" href="#contact"><span class="lang-bn">কোট চাইুন</span><span class="lang-en">Request a quote</span></a>
           </div>
         </div>
       </section>
 
       <section class="section">
         <div class="card">
-          <h2>Modern Portfolio Upgrade</h2>
+          <h2><span class="lang-bn">মডার্ন পোর্টফোলিও আপগ্রেড</span><span class="lang-en">Modern Portfolio Upgrade</span></h2>
           <p class="muted">
-            Update your regular CV into a modern portfolio website with strong visuals,
-            clear storytelling, and a shareable link for employers and clients.
+            <span class="lang-bn">আপনার সাধারণ সিভি-কে একটি মডার্ন পোর্টফোলিও ওয়েবসাইটে আপগ্রেড করুন — শক্তিশালী ভিজ্যুয়াল, পরিষ্কার স্টোরিটেলিং, এবং নিয়োগদাতা/ক্লায়েন্টদের জন্য শেয়ারযোগ্য লিংকসহ।</span>
+            <span class="lang-en">Update your regular CV into a modern portfolio website with strong visuals, clear storytelling, and a shareable link for employers and clients.</span>
           </p>
         </div>
       </section>
 
       <section id="services" class="section">
-        <h2>Services</h2>
+        <h2><span class="lang-bn">সেবা</span><span class="lang-en">Services</span></h2>
         <div class="services-row">
           <div class="card services-card">
-            <h3>Meta Ads + Payment Support</h3>
+            <h3><span class="lang-bn">মেটা অ্যাডস + পেমেন্ট সাপোর্ট</span><span class="lang-en">Meta Ads + Payment Support</span></h3>
             <p class="muted">
-              Full-funnel Meta campaigns with conversion tracking, creative testing, and
-              checkout/payment support to reduce drop-off for e-commerce and top-up flows.
+              <span class="lang-bn">ফুল-ফানেল মেটা ক্যাম্পেইন, কনভার্সন ট্র্যাকিং, ক্রিয়েটিভ টেস্টিং, এবং চেকআউট/পেমেন্ট সাপোর্ট — যাতে ই-কমার্স ও টপ-আপ ফ্লোতে ড্রপ-অফ কমে।</span>
+              <span class="lang-en">Full-funnel Meta campaigns with conversion tracking, creative testing, and checkout/payment support to reduce drop-off for e-commerce and top-up flows.</span>
             </p>
           </div>
           <div class="card services-card">
-            <h3>Social Media Content Design</h3>
+            <h3><span class="lang-bn">সোশ্যাল মিডিয়া কনটেন্ট ডিজাইন</span><span class="lang-en">Social Media Content Design</span></h3>
             <p class="muted">
-              Branded post systems, carousel templates, and campaign visuals that keep your
-              feed consistent and drive engagement.
+              <span class="lang-bn">ব্র্যান্ডেড পোস্ট সিস্টেম, ক্যারোসেল টেমপ্লেট, এবং ক্যাম্পেইন ভিজ্যুয়াল যা ফিডকে কনসিস্টেন্ট রাখে এবং এনগেজমেন্ট বাড়ায়।</span>
+              <span class="lang-en">Branded post systems, carousel templates, and campaign visuals that keep your feed consistent and drive engagement.</span>
             </p>
           </div>
           <div class="card services-card">
-            <h3>Video Ads Editing</h3>
+            <h3><span class="lang-bn">ভিডিও অ্যাডস এডিটিং</span><span class="lang-en">Video Ads Editing</span></h3>
             <p class="muted">
-              Short-form ad editing with strong hooks, captions, and clear CTAs optimized for
-              Meta placements.
+              <span class="lang-bn">শর্ট-ফর্ম অ্যাড এডিটিং — শক্তিশালী হুক, ক্যাপশন, এবং পরিষ্কার সিটিএ সহ, মেটা প্লেসমেন্টের জন্য অপ্টিমাইজড।</span>
+              <span class="lang-en">Short-form ad editing with strong hooks, captions, and clear CTAs optimized for Meta placements.</span>
             </p>
           </div>
           <div class="card services-card">
-            <h3>E-commerce SEO</h3>
+            <h3><span class="lang-bn">ই-কমার্স এসইও</span><span class="lang-en">E-commerce SEO</span></h3>
             <p class="muted">
-              Keyword research, category and product page optimization, and technical fixes
-              to grow high-intent search traffic.
+              <span class="lang-bn">কিওয়ার্ড রিসার্চ, ক্যাটাগরি/প্রোডাক্ট পেজ অপ্টিমাইজেশন, এবং টেকনিক্যাল ফিক্স — যাতে হাই-ইন্টেন্ট সার্চ ট্রাফিক বাড়ে।</span>
+              <span class="lang-en">Keyword research, category and product page optimization, and technical fixes to grow high-intent search traffic.</span>
             </p>
           </div>
           <div class="card services-card">
-            <h3>Blog Writing</h3>
+            <h3><span class="lang-bn">ব্লগ রাইটিং</span><span class="lang-en">Blog Writing</span></h3>
             <p class="muted">
-              Search-driven articles that educate buyers, answer questions, and build topical
-              authority over time.
+              <span class="lang-bn">সার্চ-ড্রিভেন আর্টিকেল যা ক্রেতাদের শিক্ষিত করে, প্রশ্নের উত্তর দেয়, এবং সময়ের সাথে টপিকাল অথরিটি তৈরি করে।</span>
+              <span class="lang-en">Search-driven articles that educate buyers, answer questions, and build topical authority over time.</span>
             </p>
           </div>
           <div class="card services-card">
-            <h3>AI Website + Domain Setup</h3>
+            <h3><span class="lang-bn">এআই ওয়েবসাইট + ডোমেইন সেটআপ</span><span class="lang-en">AI Website + Domain Setup</span></h3>
             <p class="muted">
-              Static websites and portfolios built fast with AI, then launched with custom
-              domains on GitHub Pages, Blogger, or Google Sites.
+              <span class="lang-bn">এআই দিয়ে দ্রুত স্ট্যাটিক ওয়েবসাইট ও পোর্টফোলিও তৈরি, তারপর কাস্টম ডোমেইনসহ গিটহাব পেজেস, ব্লগার, বা গুগল সাইটসে লঞ্চ।</span>
+              <span class="lang-en">Static websites and portfolios built fast with AI, then launched with custom domains on GitHub Pages, Blogger, or Google Sites.</span>
             </p>
           </div>
         </div>
       </section>
 
       <section id="about" class="section">
-        <h2>Why Choose Us</h2>
+        <h2><span class="lang-bn">কেন আমাদের বেছে নেবেন</span><span class="lang-en">Why Choose Us</span></h2>
         <div class="grid grid-2">
           <div class="card">
-            <h3>Performance-first Meta Ads</h3>
+            <h3><span class="lang-bn">পারফরম্যান্স-ফার্স্ট মেটা অ্যাডস</span><span class="lang-en">Performance-first Meta Ads</span></h3>
             <p class="muted">
-              We plan, launch, and optimize Meta campaigns with clear KPIs, creative testing,
-              and weekly insights.
+              <span class="lang-bn">আমরা স্পষ্ট কেপিআই, ক্রিয়েটিভ টেস্টিং, এবং সাপ্তাহিক ইনসাইটসহ মেটা ক্যাম্পেইন পরিকল্পনা, লঞ্চ, এবং অপ্টিমাইজ করি।</span>
+              <span class="lang-en">We plan, launch, and optimize Meta campaigns with clear KPIs, creative testing, and weekly insights.</span>
             </p>
           </div>
           <div class="card">
-            <h3>Payment Support that converts</h3>
+            <h3><span class="lang-bn">কনভার্সন-ফোকাসড পেমেন্ট সাপোর্ট</span><span class="lang-en">Payment Support that converts</span></h3>
             <p class="muted">
-              We troubleshoot payment issues and improve checkout UX so paid traffic turns into
-              completed orders.
+              <span class="lang-bn">আমরা পেমেন্ট সমস্যা ট্রাবলশুট করি এবং চেকআউট ইউএক্স উন্নত করি, যাতে পেইড ট্রাফিক সম্পূর্ণ অর্ডারে রূপান্তরিত হয়।</span>
+              <span class="lang-en">We troubleshoot payment issues and improve checkout UX so paid traffic turns into completed orders.</span>
             </p>
           </div>
           <div class="card">
-            <h3>Content that sells</h3>
+            <h3><span class="lang-bn">সেলিং কনটেন্ট</span><span class="lang-en">Content that sells</span></h3>
             <p class="muted">
-              Social content design and video ad editing tailored to your audience and product
-              benefits.
+              <span class="lang-bn">সোশ্যাল কনটেন্ট ডিজাইন এবং ভিডিও অ্যাড এডিটিং — আপনার অডিয়েন্স ও প্রোডাক্ট বেনিফিট অনুযায়ী।</span>
+              <span class="lang-en">Social content design and video ad editing tailored to your audience and product benefits.</span>
             </p>
           </div>
           <div class="card">
-            <h3>SEO and Blogs that compound</h3>
+            <h3><span class="lang-bn">কম্পাউন্ডিং এসইও ও ব্লগ</span><span class="lang-en">SEO and Blogs that compound</span></h3>
             <p class="muted">
-              We optimize product/category pages and publish blogs that grow visibility over time.
+              <span class="lang-bn">আমরা প্রোডাক্ট/ক্যাটাগরি পেজ অপ্টিমাইজ করি এবং ব্লগ প্রকাশ করি যা সময়ের সাথে ভিজিবিলিটি বাড়ায়।</span>
+              <span class="lang-en">We optimize product/category pages and publish blogs that grow visibility over time.</span>
             </p>
           </div>
         </div>
       </section>
 
       <section id="contact" class="section">
-        <h2>Contact</h2>
+        <h2><span class="lang-bn">যোগাযোগ</span><span class="lang-en">Contact</span></h2>
         <div class="grid grid-2">
           <div class="card">
-            <h3>How we can help</h3>
+            <h3><span class="lang-bn">আমরা কীভাবে সাহায্য করতে পারি</span><span class="lang-en">How we can help</span></h3>
             <p class="muted">
-              Meta Ads + payment support, social content design, video ads editing,
-              e-commerce SEO, and blog writing.
+              <span class="lang-bn">মেটা অ্যাডস + পেমেন্ট সাপোর্ট, সোশ্যাল কনটেন্ট ডিজাইন, ভিডিও অ্যাডস এডিটিং, ই-কমার্স এসইও, এবং ব্লগ রাইটিং।</span>
+              <span class="lang-en">Meta Ads + payment support, social content design, video ads editing, e-commerce SEO, and blog writing.</span>
             </p>
           </div>
           <div class="card">
-            <p><strong>Country:</strong> Bangladesh</p>
-            <p><strong>Location:</strong> Remote</p>
-            <p><strong>Availability:</strong> Open for new projects</p>
+            <p><strong><span class="lang-bn">দেশ:</span><span class="lang-en">Country:</span></strong> <span class="lang-bn">বাংলাদেশ</span><span class="lang-en">Bangladesh</span></p>
+            <p><strong><span class="lang-bn">লোকেশন:</span><span class="lang-en">Location:</span></strong> <span class="lang-bn">রিমোট</span><span class="lang-en">Remote</span></p>
+            <p><strong><span class="lang-bn">উপস্থিতি:</span><span class="lang-en">Availability:</span></strong> <span class="lang-bn">নতুন প্রজেক্টের জন্য ওপেন</span><span class="lang-en">Open for new projects</span></p>
           </div>
         </div>
         <form
@@ -594,12 +639,12 @@
           <div class="form-body">
             <input type="hidden" name="access_key" value="ac97bac0-9a10-47aa-8a0b-61c956ecdf01" />
             <input type="hidden" name="subject" value="New Contact Submission - Qartibe Space" />
-            <strong>Contact Submit</strong>
-            <p class="muted" style="margin-top:6px;">Tell us what you need and we’ll reply.</p>
-            <input class="input" type="text" name="name" placeholder="Your name" required />
-            <input class="input" type="email" name="email" placeholder="Email" required />
-            <textarea class="textarea" name="message" rows="3" placeholder="Project details" required></textarea>
-            <button class="btn" type="submit" style="margin-top:10px;">Submit</button>
+            <strong><span class="lang-bn">যোগাযোগ ফর্ম</span><span class="lang-en">Contact Form</span></strong>
+            <p class="muted" style="margin-top:6px;"><span class="lang-bn">আপনার চাহিদা লিখুন, আমরা রিপ্লাই দেব।</span><span class="lang-en">Tell us what you need and we’ll reply.</span></p>
+            <input class="input" type="text" name="name" placeholder="আপনার নাম" data-bn-placeholder="আপনার নাম" data-en-placeholder="Your name" required />
+            <input class="input" type="email" name="email" placeholder="ইমেইল" data-bn-placeholder="ইমেইল" data-en-placeholder="Email" required />
+            <textarea class="textarea" name="message" rows="3" placeholder="প্রজেক্টের বিস্তারিত" data-bn-placeholder="প্রজেক্টের বিস্তারিত" data-en-placeholder="Project details" required></textarea>
+            <button class="btn" type="submit" style="margin-top:10px;"><span class="lang-bn">সাবমিট করুন</span><span class="lang-en">Submit</span></button>
           </div>
         </form>
       </section>
@@ -608,7 +653,7 @@
     <footer class="footer">
       <div class="container">
         <div class="footer-inner">
-          <div>© 2026 Qartibe Space. All rights reserved.</div>
+          <div><span class="lang-bn">© 2026 Qartibe Space. সর্বস্বত্ব সংরক্ষিত।</span><span class="lang-en">© 2026 Qartibe Space. All rights reserved.</span></div>
           <div class="footer-social" aria-label="Social links">
             <a href="https://www.facebook.com/qartibe" aria-label="Facebook">
               <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
@@ -631,6 +676,41 @@
       </div>
     </footer>
     <script>
+      const langToggle = document.querySelector(".lang-toggle");
+      const LANG_KEY = "qs-lang-en";
+      const applyLangPref = (isOn) => {
+        document.body.classList.toggle("show-en", isOn);
+        document.documentElement.lang = isOn ? "en" : "bn";
+        const titleEl = document.querySelector("title");
+        if (titleEl) {
+          const nextTitle = isOn ? titleEl.getAttribute("data-en") : titleEl.getAttribute("data-bn");
+          if (nextTitle) {
+            titleEl.textContent = nextTitle;
+          }
+        }
+        document.querySelectorAll("meta[data-bn][data-en]").forEach((meta) => {
+          meta.setAttribute("content", isOn ? meta.getAttribute("data-en") : meta.getAttribute("data-bn"));
+        });
+        document.querySelectorAll("[data-bn-placeholder][data-en-placeholder]").forEach((field) => {
+          field.setAttribute(
+            "placeholder",
+            isOn ? field.getAttribute("data-en-placeholder") : field.getAttribute("data-bn-placeholder")
+          );
+        });
+        if (langToggle) {
+          langToggle.setAttribute("aria-pressed", isOn ? "true" : "false");
+        }
+      };
+      if (langToggle) {
+        const saved = localStorage.getItem(LANG_KEY);
+        applyLangPref(saved === "1");
+        langToggle.addEventListener("click", () => {
+          const next = !document.body.classList.contains("show-en");
+          localStorage.setItem(LANG_KEY, next ? "1" : "0");
+          applyLangPref(next);
+        });
+      }
+
       const autoVideos = document.querySelectorAll(".hero-video, .auto-video");
       if (autoVideos.length > 0) {
         const tryPlay = (video) => {
