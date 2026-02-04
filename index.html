@@ -8,10 +8,31 @@
       name="description"
       content="Qartibe Space is a digital agency for Meta ads, e-commerce growth, content design, and SEO."
     />
+    <meta name="keywords" content="Qartibe Space, digital agency, Meta ads, ecommerce growth, content design, SEO, video ads, Bangladesh" />
+    <meta name="author" content="Qartibe Space" />
+    <meta property="og:title" content="Qartibe Space - Digital Growth Partner" />
+    <meta
+      property="og:description"
+      content="Qartibe Space is a digital agency for Meta ads, e-commerce growth, content design, and SEO."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="favicon.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Qartibe Space - Digital Growth Partner" />
+    <meta
+      name="twitter:description"
+      content="Qartibe Space is a digital agency for Meta ads, e-commerce growth, content design, and SEO."
+    />
+    <meta name="twitter:image" content="favicon.png" />
     <meta name="theme-color" content="#0B0F19" />
     <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap"
+    />
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap");
       :root {
         --bg: #0b1220;
         --card: #121a2b;
@@ -339,6 +360,7 @@
             alt="Qartibe Space logo"
             width="28"
             height="28"
+            decoding="async"
             style="display:block;border-radius:50%;background:#ffffff;"
           />
           <span class="brand-name">Qartibe Space</span>
@@ -360,7 +382,7 @@
           muted
           loop
           playsinline
-          preload="auto"
+          preload="metadata"
         >
           <source src="hero-video.mp4" type="video/mp4" />
         </video>
@@ -568,8 +590,9 @@
       if (heroVideo) {
         heroVideo.muted = true;
         heroVideo.playsInline = true;
-        heroVideo.preload = "auto";
-        heroVideo.load();
+        heroVideo.loop = true;
+        heroVideo.preload = "metadata";
+        heroVideo.playbackRate = 1;
         const tryPlay = () => {
           const playPromise = heroVideo.play();
           if (playPromise && typeof playPromise.catch === "function") {
