@@ -150,6 +150,34 @@
         transform: translateY(16px);
         transition: opacity 600ms ease, transform 600ms ease;
       }
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border-radius: 24px;
+        padding: 54px 0 36px;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+      .hero-video,
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .hero-video {
+        object-fit: cover;
+        z-index: 0;
+      }
+      .hero-overlay {
+        z-index: 1;
+        background:
+          radial-gradient(900px 420px at 10% -10%, rgba(47, 124, 246, 0.35), transparent),
+          radial-gradient(700px 380px at 90% 10%, rgba(27, 95, 214, 0.25), transparent),
+          linear-gradient(180deg, rgba(11, 18, 32, 0.6), rgba(11, 18, 32, 0.9));
+      }
       .section.is-visible {
         opacity: 1;
         transform: translateY(0);
@@ -319,34 +347,46 @@
     </header>
 
     <main class="container">
-      <section class="section">
-        <div class="grid grid-2">
-          <div>
-            <h1>Digital growth partner for e-commerce and top-up brands</h1>
-            <p class="muted">
-              We combine Meta Ads, payment support, social content design, video ad editing,
-              e-commerce SEO, and blog writing to grow revenue, reduce checkout friction, and
-              build long-term demand.
-            </p>
-            <div style="display:flex;gap:12px;flex-wrap:wrap;">
-              <a class="btn" href="#contact">Start a project</a>
-              <a class="btn btn-outline" href="#services">View services</a>
-            </div>
-          </div>
-          <div class="card">
-            <h3>Growth Snapshot</h3>
-            <p class="muted">
-              Meta Ads + payment support, social content, video ads, SEO, and blogs working
-              together to deliver compounding results.
-            </p>
-            <div class="grid grid-2">
-              <div class="card" style="padding:12px;">
-                <strong>Paid Growth</strong>
-                <p class="muted">Creative testing + conversion fixes.</p>
+      <section class="section hero">
+        <video
+          class="hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+        >
+          <source src="hero-video.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="grid grid-2">
+            <div>
+              <h1>Digital growth partner for e-commerce and top-up brands</h1>
+              <p class="muted">
+                We combine Meta Ads, payment support, social content design, video ad editing,
+                e-commerce SEO, and blog writing to grow revenue, reduce checkout friction, and
+                build long-term demand.
+              </p>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <a class="btn" href="#contact">Start a project</a>
+                <a class="btn btn-outline" href="#services">View services</a>
               </div>
-              <div class="card" style="padding:12px;">
-                <strong>Organic Growth</strong>
-                <p class="muted">SEO + blogs that compound.</p>
+            </div>
+            <div class="card">
+              <h3>Growth Snapshot</h3>
+              <p class="muted">
+                Meta Ads + payment support, social content, video ads, SEO, and blogs working
+                together to deliver compounding results.
+              </p>
+              <div class="grid grid-2">
+                <div class="card" style="padding:12px;">
+                  <strong>Paid Growth</strong>
+                  <p class="muted">Creative testing + conversion fixes.</p>
+                </div>
+                <div class="card" style="padding:12px;">
+                  <strong>Organic Growth</strong>
+                  <p class="muted">SEO + blogs that compound.</p>
+                </div>
               </div>
             </div>
           </div>
