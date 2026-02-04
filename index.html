@@ -562,6 +562,28 @@
       </div>
     </footer>
     <script>
+      const heroVideo = document.querySelector(".hero-video");
+      if (heroVideo) {
+        heroVideo.muted = true;
+        heroVideo.playsInline = true;
+        heroVideo.preload = "auto";
+        heroVideo.load();
+        const tryPlay = () => {
+          const playPromise = heroVideo.play();
+          if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(() => {});
+          }
+        };
+        heroVideo.addEventListener("canplay", tryPlay, { once: true });
+        document.addEventListener("visibilitychange", () => {
+          if (!document.hidden) {
+            tryPlay();
+          }
+        });
+        window.addEventListener("load", tryPlay, { once: true });
+        document.addEventListener("click", tryPlay, { once: true });
+      }
+
       const servicesRow = document.querySelector(".services-row");
       if (servicesRow) {
         servicesRow.addEventListener(
