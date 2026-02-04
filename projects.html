@@ -1,12 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="bn">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Qartibe Space - Projects</title>
+    <title data-bn="Qartibe Space - প্রজেক্টস" data-en="Qartibe Space - Projects">Qartibe Space - প্রজেক্টস</title>
     <meta
       name="description"
-      content="Case studies and client work by Qartibe Space."
+      content="Qartibe Space এর কেস স্টাডি ও ক্লায়েন্ট কাজের সংগ্রহ।"
+      data-bn="Qartibe Space এর কেস স্টাডি ও ক্লায়েন্ট কাজের সংগ্রহ।"
+      data-en="Case studies and client work by Qartibe Space."
     />
     <meta name="theme-color" content="#0B0F19" />
     <link rel="icon" href="favicon.png" type="image/png" />
@@ -120,6 +122,31 @@
         font-weight: 600;
         box-shadow: 0 10px 22px rgba(47, 124, 246, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
         transition: transform 150ms ease, box-shadow 150ms ease;
+      }
+      .lang-en {
+        display: none;
+      }
+      body.show-en .lang-en {
+        display: inline;
+      }
+      body.show-en .lang-bn {
+        display: none;
+      }
+      .lang-toggle {
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        border-radius: 999px;
+        font-size: 12px;
+        padding: 6px 10px;
+        line-height: 1;
+        cursor: pointer;
+        transition: transform 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+      }
+      .lang-toggle:hover {
+        transform: translateY(-1px);
+        border-color: rgba(47, 124, 246, 0.6);
+        box-shadow: 0 10px 18px rgba(5, 10, 20, 0.35);
       }
       .btn:hover {
         transform: translateY(-1px);
@@ -288,12 +315,13 @@
             style="display:block;border-radius:50%;background:#ffffff;"
           />
           <span class="brand-name">Qartibe Space</span>
+          <button class="lang-toggle" type="button" aria-pressed="false">B / E</button>
         </div>
         <nav class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="projects.html">Projects</a>
-          <a href="index.html#services">Services</a>
-          <a href="index.html#contact">Contact</a>
+          <a href="index.html"><span class="lang-bn">হোম</span><span class="lang-en">Home</span></a>
+          <a href="projects.html"><span class="lang-bn">প্রজেক্টস</span><span class="lang-en">Projects</span></a>
+          <a href="index.html#services"><span class="lang-bn">সেবা</span><span class="lang-en">Services</span></a>
+          <a href="index.html#contact"><span class="lang-bn">যোগাযোগ</span><span class="lang-en">Contact</span></a>
         </nav>
       </div>
     </header>
@@ -302,15 +330,15 @@
       <section class="hero">
         <div class="hero-card">
           <div>
-            <h1>Projects</h1>
+            <h1><span class="lang-bn">প্রজেক্টস</span><span class="lang-en">Projects</span></h1>
             <p class="muted">
-              A snapshot of growth wins across Meta ads, conversion fixes, content systems,
-              and SEO. Replace the placeholders below with your real case studies.
+              <span class="lang-bn">মেটা অ্যাডস, কনভার্সন ফিক্স, কনটেন্ট সিস্টেম, এবং এসইও জুড়ে গ্রোথ উইনের একটি স্ন্যাপশট। নিচের প্লেসহোল্ডারগুলো আপনার আসল কেস স্টাডি দিয়ে বদলে দিন।</span>
+              <span class="lang-en">A snapshot of growth wins across Meta ads, conversion fixes, content systems, and SEO. Replace the placeholders below with your real case studies.</span>
             </p>
           </div>
           <div style="display:flex;gap:12px;flex-wrap:wrap;">
-            <a class="btn" href="index.html#contact">Start a project</a>
-            <a class="btn btn-outline" href="index.html">Back to home</a>
+            <a class="btn" href="index.html#contact"><span class="lang-bn">প্রজেক্ট শুরু করুন</span><span class="lang-en">Start a project</span></a>
+            <a class="btn btn-outline" href="index.html"><span class="lang-bn">হোমে ফিরে যান</span><span class="lang-en">Back to home</span></a>
           </div>
         </div>
       </section>
@@ -318,59 +346,59 @@
       <section class="section">
         <div class="grid grid-2">
           <article class="card">
-            <h3>Top-up Brand Growth Sprint</h3>
+            <h3><span class="lang-bn">টপ-আপ ব্র্যান্ড গ্রোথ স্প্রিন্ট</span><span class="lang-en">Top-up Brand Growth Sprint</span></h3>
             <div class="project-meta">
-              <span class="tag">Meta Ads</span>
-              <span class="tag">Checkout Fixes</span>
-              <span class="tag">6 Weeks</span>
+              <span class="tag"><span class="lang-bn">মেটা অ্যাডস</span><span class="lang-en">Meta Ads</span></span>
+              <span class="tag"><span class="lang-bn">চেকআউট ফিক্স</span><span class="lang-en">Checkout Fixes</span></span>
+              <span class="tag"><span class="lang-bn">৬ সপ্তাহ</span><span class="lang-en">6 Weeks</span></span>
             </div>
             <p class="muted">
-              Rebuilt campaign structure, creative testing, and payment flow monitoring to
-              stabilize performance and reduce drop-off.
+              <span class="lang-bn">পারফরম্যান্স স্থিতিশীল করতে ও ড্রপ-অফ কমাতে ক্যাম্পেইন স্ট্রাকচার পুনর্গঠন, ক্রিয়েটিভ টেস্টিং, এবং পেমেন্ট ফ্লো মনিটরিং করা হয়েছে।</span>
+              <span class="lang-en">Rebuilt campaign structure, creative testing, and payment flow monitoring to stabilize performance and reduce drop-off.</span>
             </p>
-            <p><strong>Result:</strong> +38% revenue lift with lower CPA.</p>
+            <p><strong><span class="lang-bn">ফলাফল:</span><span class="lang-en">Result:</span></strong> <span class="lang-bn">কম সিপিএ সহ +38% রাজস্ব বৃদ্ধি।</span><span class="lang-en">+38% revenue lift with lower CPA.</span></p>
           </article>
 
           <article class="card">
-            <h3>E-commerce SEO Foundation</h3>
+            <h3><span class="lang-bn">ই-কমার্স এসইও ফাউন্ডেশন</span><span class="lang-en">E-commerce SEO Foundation</span></h3>
             <div class="project-meta">
-              <span class="tag">SEO</span>
-              <span class="tag">Blogs</span>
-              <span class="tag">90 Days</span>
+              <span class="tag"><span class="lang-bn">এসইও</span><span class="lang-en">SEO</span></span>
+              <span class="tag"><span class="lang-bn">ব্লগ</span><span class="lang-en">Blogs</span></span>
+              <span class="tag"><span class="lang-bn">৯০ দিন</span><span class="lang-en">90 Days</span></span>
             </div>
             <p class="muted">
-              Keyword mapping, category optimization, and a blog engine to capture high-intent
-              searches and build topical authority.
+              <span class="lang-bn">হাই-ইন্টেন্ট সার্চ ধরতে কিওয়ার্ড ম্যাপিং, ক্যাটাগরি অপ্টিমাইজেশন, এবং ব্লগ ইঞ্জিন তৈরি করা হয়েছে যাতে টপিকাল অথরিটি তৈরি হয়।</span>
+              <span class="lang-en">Keyword mapping, category optimization, and a blog engine to capture high-intent searches and build topical authority.</span>
             </p>
-            <p><strong>Result:</strong> +62% organic sessions, +24% conversions.</p>
+            <p><strong><span class="lang-bn">ফলাফল:</span><span class="lang-en">Result:</span></strong> <span class="lang-bn">+62% অর্গানিক সেশন, +24% কনভার্সন।</span><span class="lang-en">+62% organic sessions, +24% conversions.</span></p>
           </article>
 
           <article class="card">
-            <h3>Social Content System</h3>
+            <h3><span class="lang-bn">সোশ্যাল কনটেন্ট সিস্টেম</span><span class="lang-en">Social Content System</span></h3>
             <div class="project-meta">
-              <span class="tag">Design</span>
-              <span class="tag">Video Ads</span>
-              <span class="tag">4 Weeks</span>
+              <span class="tag"><span class="lang-bn">ডিজাইন</span><span class="lang-en">Design</span></span>
+              <span class="tag"><span class="lang-bn">ভিডিও অ্যাডস</span><span class="lang-en">Video Ads</span></span>
+              <span class="tag"><span class="lang-bn">৪ সপ্তাহ</span><span class="lang-en">4 Weeks</span></span>
             </div>
             <p class="muted">
-              Built a reusable content library with carousel templates and short-form edits
-              for weekly campaigns.
+              <span class="lang-bn">সাপ্তাহিক ক্যাম্পেইনের জন্য ক্যারোসেল টেমপ্লেট এবং শর্ট-ফর্ম এডিটসহ রিইউজেবল কনটেন্ট লাইব্রেরি তৈরি করা হয়েছে।</span>
+              <span class="lang-en">Built a reusable content library with carousel templates and short-form edits for weekly campaigns.</span>
             </p>
-            <p><strong>Result:</strong> 3x faster content velocity.</p>
+            <p><strong><span class="lang-bn">ফলাফল:</span><span class="lang-en">Result:</span></strong> <span class="lang-bn">৩ গুণ দ্রুত কনটেন্ট ভেলোসিটি।</span><span class="lang-en">3x faster content velocity.</span></p>
           </article>
 
           <article class="card">
-            <h3>Conversion Optimization Audit</h3>
+            <h3><span class="lang-bn">কনভার্সন অপটিমাইজেশন অডিট</span><span class="lang-en">Conversion Optimization Audit</span></h3>
             <div class="project-meta">
-              <span class="tag">CRO</span>
-              <span class="tag">Analytics</span>
-              <span class="tag">2 Weeks</span>
+              <span class="tag"><span class="lang-bn">সিআরও</span><span class="lang-en">CRO</span></span>
+              <span class="tag"><span class="lang-bn">অ্যানালিটিক্স</span><span class="lang-en">Analytics</span></span>
+              <span class="tag"><span class="lang-bn">২ সপ্তাহ</span><span class="lang-en">2 Weeks</span></span>
             </div>
             <p class="muted">
-              Funnel diagnostics, UX fixes, and trust-building updates on product and
-              checkout pages.
+              <span class="lang-bn">ফানেল ডায়াগনস্টিকস, ইউএক্স ফিক্স, এবং প্রোডাক্ট/চেকআউট পেজে ট্রাস্ট-বিল্ডিং আপডেট করা হয়েছে।</span>
+              <span class="lang-en">Funnel diagnostics, UX fixes, and trust-building updates on product and checkout pages.</span>
             </p>
-            <p><strong>Result:</strong> +19% checkout completion.</p>
+            <p><strong><span class="lang-bn">ফলাফল:</span><span class="lang-en">Result:</span></strong> <span class="lang-bn">+19% চেকআউট কমপ্লিশন।</span><span class="lang-en">+19% checkout completion.</span></p>
           </article>
         </div>
       </section>
@@ -379,14 +407,14 @@
     <section class="section">
       <div class="container">
         <div class="card">
-          <h2>AI Website Launch</h2>
+          <h2><span class="lang-bn">এআই ওয়েবসাইট লঞ্চ</span><span class="lang-en">AI Website Launch</span></h2>
           <p class="muted">
-            AI-assisted static websites and portfolio builds, plus custom domain setup and
-            hosting on GitHub Pages, Blogger, or Google Sites.
+            <span class="lang-bn">এআই-অ্যাসিস্টেড স্ট্যাটিক ওয়েবসাইট এবং পোর্টফোলিও বিল্ড, সাথে কাস্টম ডোমেইন সেটআপ এবং গিটহাব পেজেস, ব্লগার, অথবা গুগল সাইটস এ হোস্টিং।</span>
+            <span class="lang-en">AI-assisted static websites and portfolio builds, plus custom domain setup and hosting on GitHub Pages, Blogger, or Google Sites.</span>
           </p>
           <div style="display:flex;gap:12px;flex-wrap:wrap;">
-            <a class="btn" href="projects.html">See projects</a>
-            <a class="btn btn-outline" href="index.html#contact">Request a quote</a>
+            <a class="btn" href="projects.html"><span class="lang-bn">প্রজেক্ট দেখুন</span><span class="lang-en">See projects</span></a>
+            <a class="btn btn-outline" href="index.html#contact"><span class="lang-bn">কোট চাইুন</span><span class="lang-en">Request a quote</span></a>
           </div>
         </div>
       </div>
@@ -395,10 +423,10 @@
     <section class="section">
       <div class="container">
         <div class="card">
-          <h2>Modern Portfolio Upgrade</h2>
+          <h2><span class="lang-bn">মডার্ন পোর্টফোলিও আপগ্রেড</span><span class="lang-en">Modern Portfolio Upgrade</span></h2>
           <p class="muted">
-            Update your regular CV into a modern portfolio website with strong visuals,
-            clear storytelling, and a shareable link for employers and clients.
+            <span class="lang-bn">আপনার সাধারণ সিভি-কে একটি মডার্ন পোর্টফোলিও ওয়েবসাইটে আপগ্রেড করুন — শক্তিশালী ভিজ্যুয়াল, পরিষ্কার স্টোরিটেলিং, এবং নিয়োগদাতা/ক্লায়েন্টদের জন্য শেয়ারযোগ্য লিংকসহ।</span>
+            <span class="lang-en">Update your regular CV into a modern portfolio website with strong visuals, clear storytelling, and a shareable link for employers and clients.</span>
           </p>
         </div>
       </div>
@@ -407,7 +435,7 @@
     <footer class="footer">
       <div class="container">
         <div class="footer-inner">
-          <div>© 2026 Qartibe Space. All rights reserved.</div>
+          <div><span class="lang-bn">© 2026 Qartibe Space. সর্বস্বত্ব সংরক্ষিত।</span><span class="lang-en">© 2026 Qartibe Space. All rights reserved.</span></div>
           <div class="footer-social" aria-label="Social links">
             <a href="https://www.facebook.com/qartibe" aria-label="Facebook">
               <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
@@ -429,5 +457,35 @@
         </div>
       </div>
     </footer>
+    <script>
+      const langToggle = document.querySelector(".lang-toggle");
+      const LANG_KEY = "qs-lang-en";
+      const applyLangPref = (isOn) => {
+        document.body.classList.toggle("show-en", isOn);
+        document.documentElement.lang = isOn ? "en" : "bn";
+        const titleEl = document.querySelector("title");
+        if (titleEl) {
+          const nextTitle = isOn ? titleEl.getAttribute("data-en") : titleEl.getAttribute("data-bn");
+          if (nextTitle) {
+            titleEl.textContent = nextTitle;
+          }
+        }
+        document.querySelectorAll("meta[data-bn][data-en]").forEach((meta) => {
+          meta.setAttribute("content", isOn ? meta.getAttribute("data-en") : meta.getAttribute("data-bn"));
+        });
+        if (langToggle) {
+          langToggle.setAttribute("aria-pressed", isOn ? "true" : "false");
+        }
+      };
+      if (langToggle) {
+        const saved = localStorage.getItem(LANG_KEY);
+        applyLangPref(saved === "1");
+        langToggle.addEventListener("click", () => {
+          const next = !document.body.classList.contains("show-en");
+          localStorage.setItem(LANG_KEY, next ? "1" : "0");
+          applyLangPref(next);
+        });
+      }
+    </script>
   </body>
 </html>
