@@ -162,7 +162,8 @@
         z-index: 2;
         padding: 54px 0 36px;
       }
-      .hero-video {
+      .hero-video,
+      .hero-overlay {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -172,6 +173,21 @@
         object-fit: cover;
         z-index: 0;
         opacity: 0.55;
+        -webkit-mask-image:
+          radial-gradient(900px 420px at 10% -10%, rgba(0, 0, 0, 0.85), transparent),
+          radial-gradient(700px 380px at 90% 10%, rgba(0, 0, 0, 0.75), transparent),
+          linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 1));
+        mask-image:
+          radial-gradient(900px 420px at 10% -10%, rgba(0, 0, 0, 0.85), transparent),
+          radial-gradient(700px 380px at 90% 10%, rgba(0, 0, 0, 0.75), transparent),
+          linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 1));
+      }
+      .hero-overlay {
+        z-index: 1;
+        background:
+          radial-gradient(900px 420px at 10% -10%, rgba(47, 124, 246, 0.22), transparent),
+          radial-gradient(700px 380px at 90% 10%, rgba(27, 95, 214, 0.16), transparent),
+          linear-gradient(180deg, rgba(8, 12, 22, 0.75), rgba(8, 12, 22, 0.95));
       }
       .section.is-visible {
         opacity: 1;
@@ -353,6 +369,7 @@
         >
           <source src="hero-video.mp4" type="video/mp4" />
         </video>
+        <div class="hero-overlay" aria-hidden="true"></div>
         <div class="hero-content">
           <div class="grid grid-2">
             <div>
