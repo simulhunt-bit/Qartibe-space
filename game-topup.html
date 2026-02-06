@@ -677,9 +677,12 @@
             <input class="input" type="tel" name="whatsapp" placeholder="হোয়াটসঅ্যাপ নাম্বার" data-bn-placeholder="হোয়াটসঅ্যাপ নাম্বার" data-en-placeholder="WhatsApp number" required />
             <input class="input" type="email" name="email" placeholder="ইমেইল (ঐচ্ছিক)" data-bn-placeholder="ইমেইল (ঐচ্ছিক)" data-en-placeholder="Email (optional)" />
             <select class="input" name="is_first_topup" id="firstTopupSelect" required>
-              <option value="" selected disabled>এই গেমে প্রথমবার টপ-আপ?</option>
-              <option value="Yes">হ্যাঁ, প্রথমবার</option>
-              <option value="No">না, আগেও করেছি</option>
+              <option value="" selected disabled>
+                <span class="lang-bn">এই গেমে প্রথমবার টপ-আপ?</span>
+                <span class="lang-en">Is this your first top-up for this game?</span>
+              </option>
+              <option value="Yes"><span class="lang-bn">হ্যাঁ</span><span class="lang-en">Yes</span></option>
+              <option value="No"><span class="lang-bn">না</span><span class="lang-en">No</span></option>
             </select>
           </div>
           <textarea class="textarea" name="message" id="formMessage" rows="4" placeholder="অর্ডারের বিস্তারিত" data-bn-placeholder="অর্ডারের বিস্তারিত" data-en-placeholder="Order details" required></textarea>
