@@ -674,7 +674,13 @@
           <p class="muted" style="margin:6px 0 0;"><span class="lang-bn">নিচের তথ্য পূরণ করে সাবমিট করুন।</span><span class="lang-en">Fill the details below and submit.</span></p>
           <div class="form-grid" style="margin-top:10px;">
             <input class="input" type="text" name="name" placeholder="আপনার নাম" data-bn-placeholder="আপনার নাম" data-en-placeholder="Your name" required />
-            <input class="input" type="email" name="email" placeholder="ইমেইল" data-bn-placeholder="ইমেইল" data-en-placeholder="Email" required />
+            <input class="input" type="tel" name="whatsapp" placeholder="হোয়াটসঅ্যাপ নাম্বার" data-bn-placeholder="হোয়াটসঅ্যাপ নাম্বার" data-en-placeholder="WhatsApp number" required />
+            <input class="input" type="email" name="email" placeholder="ইমেইল (ঐচ্ছিক)" data-bn-placeholder="ইমেইল (ঐচ্ছিক)" data-en-placeholder="Email (optional)" />
+            <select class="input" name="is_first_topup" id="firstTopupSelect" required>
+              <option value="" selected disabled>এই গেমে প্রথমবার টপ-আপ?</option>
+              <option value="Yes">হ্যাঁ, প্রথমবার</option>
+              <option value="No">না, আগেও করেছি</option>
+            </select>
           </div>
           <textarea class="textarea" name="message" id="formMessage" rows="4" placeholder="অর্ডারের বিস্তারিত" data-bn-placeholder="অর্ডারের বিস্তারিত" data-en-placeholder="Order details" required></textarea>
           <button class="btn" type="submit" id="submitOrder" disabled><span class="lang-bn">সাবমিট করুন</span><span class="lang-en">Submit</span></button>
@@ -812,6 +818,7 @@
       const formTotalBdt = document.getElementById("formTotalBdt");
       const formMessage = document.getElementById("formMessage");
       const submitOrder = document.getElementById("submitOrder");
+      const firstTopupSelect = document.getElementById("firstTopupSelect");
       const rangeTableBody = document.querySelector("#rangeTable tbody");
       const packRangeText = document.getElementById("packRangeText");
       const currencyUsd = document.getElementById("currencyUsd");
@@ -1040,6 +1047,10 @@
           ? '<span class="lang-bn">ম্যানুয়াল রেট লুকান</span><span class="lang-en">Hide manual rate</span>'
           : '<span class="lang-bn">ম্যানুয়াল রেট দেখান</span><span class="lang-en">Show manual rate</span>';
       });
+
+      if (firstTopupSelect) {
+        firstTopupSelect.addEventListener("change", () => {});
+      }
 
       const updateCurrencyHeaders = () => {
         const isUsd = state.displayCurrency === "USD";
