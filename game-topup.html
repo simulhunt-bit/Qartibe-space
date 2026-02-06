@@ -378,6 +378,9 @@
         margin-top: 10px;
         flex-wrap: wrap;
       }
+      .rate-input.is-hidden {
+        display: none;
+      }
       .rate-input input {
         width: 140px;
         padding: 6px 10px;
@@ -611,10 +614,11 @@
             </div>
           </div>
           <div class="rate-input">
-            <label class="selected-label" for="manualRateInput"><span class="lang-bn">ম্যানুয়াল রেট</span><span class="lang-en">Manual rate</span></label>
-            <input id="manualRateInput" type="number" inputmode="decimal" step="0.0001" placeholder="e.g. 110.50" />
+            <label class="selected-label" for="manualRateInput"><span class="lang-bn">ম্যানুয়াল রেট (TK/USD)</span><span class="lang-en">Manual rate (TK/USD)</span></label>
+            <input id="manualRateInput" type="number" inputmode="decimal" step="0.0001" placeholder="e.g. 110.50 TK/USD" />
             <button class="btn btn-outline" type="button" id="applyManualRate"><span class="lang-bn">প্রয়োগ</span><span class="lang-en">Apply</span></button>
             <button class="btn btn-outline" type="button" id="fetchAutoRate"><span class="lang-bn">অটো আপডেট</span><span class="lang-en">Auto Update</span></button>
+            <button class="btn btn-outline" type="button" id="toggleManualRate"><span class="lang-bn">ম্যানুয়াল রেট দেখান</span><span class="lang-en">Show manual rate</span></button>
           </div>
         </div>
 
@@ -801,6 +805,8 @@
       const vatHeader = document.getElementById("vatHeader");
       const totalHeader = document.getElementById("totalHeader");
       const fetchAutoRate = document.getElementById("fetchAutoRate");
+      const toggleManualRate = document.getElementById("toggleManualRate");
+      const rateInputWrap = document.querySelector(".rate-input");
 
       const openModal = (modal) => {
         modal.classList.add("is-open");
@@ -1005,6 +1011,15 @@
       };
 
       fetchAutoRate.addEventListener("click", fetchRate);
+      let manualRateVisible = false;
+      rateInputWrap.classList.add("is-hidden");
+      toggleManualRate.addEventListener("click", () => {
+        manualRateVisible = !manualRateVisible;
+        rateInputWrap.classList.toggle("is-hidden", !manualRateVisible);
+        toggleManualRate.innerHTML = manualRateVisible
+          ? '<span class="lang-bn">ম্যানুয়াল রেট লুকান</span><span class="lang-en">Hide manual rate</span>'
+          : '<span class="lang-bn">ম্যানুয়াল রেট দেখান</span><span class="lang-en">Show manual rate</span>';
+      });
 
       const updateCurrencyHeaders = () => {
         const isUsd = state.displayCurrency === "USD";
