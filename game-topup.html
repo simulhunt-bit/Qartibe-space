@@ -726,7 +726,6 @@
         rate: null,
         displayCurrency: "USD"
       };
-      const exchangeApiKey = "a6ea68f1930dfef25adf2819bccad57e";
       const gamePackRanges = {
         "Free Fire": {
           currency: "Diamonds",
@@ -1006,20 +1005,15 @@
       const fetchRate = async () => {
         rateStatus.textContent = "Loading";
         try {
-          const response = await fetch(
-            `https://api.exchangeratesapi.io/v1/latest?access_key=${exchangeApiKey}&symbols=USD,BDT`,
-            { cache: "no-store" }
-          );
+          const response = await fetch("https://open.er-api.com/v6/latest/USD", { cache: "no-store" });
           const data = await response.json();
-          if (!data || data.success === false || !data.rates) {
+          if (!data || data.result !== "success" || !data.rates) {
             throw new Error("Rate fetch failed");
           }
-          const usd = Number(data.rates.USD);
-          const bdt = Number(data.rates.BDT);
-          if (!Number.isFinite(usd) || !Number.isFinite(bdt) || usd === 0) {
+          const rate = Number(data.rates.BDT);
+          if (!Number.isFinite(rate) || rate <= 0) {
             throw new Error("Invalid rate data");
           }
-          const rate = bdt / usd;
           state.rate = rate;
           rateValue.textContent = rate.toFixed(4);
           rateStatus.textContent = "Live";
