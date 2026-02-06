@@ -899,12 +899,39 @@
         return `$${value.toFixed(2)}`;
       };
 
+      const parsePackAmount = (packText) => {
+        if (!packText) return null;
+        const match = String(packText).replace(/,/g, "").match(/(\d+(\.\d+)?)/);
+        if (!match) return null;
+        const value = Number(match[1]);
+        return Number.isFinite(value) ? value : null;
+      };
+
+      const formatPackAmount = (value) => {
+        if (!Number.isFinite(value)) return null;
+        return Math.round(value).toLocaleString("en-US");
+      };
+
+      const getCurrencyEstimate = (usd, gameRange) => {
+        if (!gameRange || !Number.isFinite(usd)) return null;
+        const minPackAmount = parsePackAmount(gameRange.minPack);
+        if (!Number.isFinite(minPackAmount) || !Number.isFinite(gameRange.minUsd) || gameRange.minUsd <= 0) {
+          return null;
+        }
+        const ratio = minPackAmount / gameRange.minUsd;
+        const estimate = usd * ratio;
+        const formatted = formatPackAmount(estimate);
+        if (!formatted) return null;
+        return `${formatted} ${gameRange.currency}`;
+      };
+
       const updatePriceTable = () => {
         if (!priceTableBody) return;
         priceTableBody.innerHTML = "";
         const gameRange = gamePackRanges[state.selectedGame] || null;
         const minUsd = gameRange ? gameRange.minUsd : 0.99;
         const maxUsd = gameRange ? gameRange.maxUsd : 99.99;
+        const gameCurrency = gameRange ? gameRange.currency : "Currency";
         const packList = [0.99, 1.99, 2.99, 4.99, 9.99, 19.99, 49.99, 99.99].filter(
           (value) => value >= minUsd && value <= maxUsd
         );
@@ -917,8 +944,13 @@
           const baseDisplay = state.displayCurrency === "USD" ? usd : baseBdt;
           const vat = baseDisplay ? baseDisplay * 0.05 : null;
           const total = baseDisplay ? baseDisplay + vat : null;
+          const estimate = getCurrencyEstimate(usd, gameRange);
+          const estimateLine = estimate ? `≈ ${estimate}` : gameCurrency;
           row.innerHTML = `
-            <td>${state.displayCurrency === "USD" ? formatUsd(baseDisplay) : formatBdt(baseDisplay)}</td>
+            <td>
+              <div>${state.displayCurrency === "USD" ? formatUsd(baseDisplay) : formatBdt(baseDisplay)}</div>
+              <div class="muted" style="font-size:12px;">${estimateLine}</div>
+            </td>
             <td>${rateAvailable ? formatBdt(baseBdt) : "--"}</td>
             <td>${state.displayCurrency === "USD" ? formatUsd(vat) : formatBdt(vat)}</td>
             <td>${state.displayCurrency === "USD" ? formatUsd(total) : formatBdt(total)}</td>
