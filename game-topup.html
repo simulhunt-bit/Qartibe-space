@@ -1003,6 +1003,9 @@
             const isActive = row.classList.contains("is-selected");
             document.querySelectorAll(".price-row").forEach((r) => r.classList.remove("is-selected"));
             document.querySelectorAll("input[name='pack']").forEach((input) => (input.checked = false));
+            document.querySelectorAll(".pack-item").forEach((node) => node.classList.remove("is-selected"));
+            document.querySelectorAll("input[name='packType']").forEach((input) => (input.checked = false));
+            state.selectedPackType = null;
             if (isActive) {
               state.selectedPack = null;
             } else {
@@ -1216,6 +1219,9 @@
             const isActive = item.classList.contains("is-selected");
             document.querySelectorAll(".pack-item").forEach((node) => node.classList.remove("is-selected"));
             document.querySelectorAll("input[name='packType']").forEach((input) => (input.checked = false));
+            document.querySelectorAll(".price-row").forEach((row) => row.classList.remove("is-selected"));
+            document.querySelectorAll("input[name='pack']").forEach((input) => (input.checked = false));
+            state.selectedPack = null;
             if (isActive) {
               state.selectedPackType = null;
             } else {
