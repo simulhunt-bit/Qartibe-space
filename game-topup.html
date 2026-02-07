@@ -1051,7 +1051,7 @@
           submitOrder.disabled = true;
           return;
         }
-        let message = `Game: ${getGameName()}`;
+        const messageLines = [`Game: ${getGameName()}`];
         if (state.selectedPack) {
           const base = state.selectedPack * state.rate;
           const vat = base * 0.05;
@@ -1059,16 +1059,21 @@
           formPackUsd.value = state.selectedPack.toFixed(2);
           formRate.value = state.rate.toFixed(6);
           formTotalBdt.value = total.toFixed(2);
-          message += `\nPack: $${state.selectedPack.toFixed(2)}\nRate: ${state.rate.toFixed(6)}\nVAT (5%): ${formatBdt(vat)}\nTotal (BDT): ${formatBdt(total)}`;
+          messageLines.push(
+            `Pack: $${state.selectedPack.toFixed(2)}`,
+            `Rate: ${state.rate.toFixed(6)}`,
+            `VAT (5%): ${formatBdt(vat)}`,
+            `Total (BDT): ${formatBdt(total)}`
+          );
         } else {
           formPackUsd.value = "";
           formRate.value = state.rate ? state.rate.toFixed(6) : "";
           formTotalBdt.value = "";
         }
         if (state.selectedPackType) {
-          message += `\nPack Type: ${state.selectedPackType}`;
+          messageLines.push(`Pack Type: ${state.selectedPackType}`);
         }
-        formMessage.value = message;
+        formMessage.value = messageLines.join("\n");
         submitOrder.disabled = false;
       };
 
@@ -1177,32 +1182,20 @@
 
       const gamePackTypes = {
         "Free Fire": [
-          "Weekly Membership – daily diamonds for 7 days",
-          "Monthly Membership – daily diamonds for 30 days (best value)",
-          "Booyah Pass – seasonal reward pass",
-          "Bundles / Events – skins, emotes, outfits",
-          "Luck Royale / Incubator – spin-based packs"
+          "Weekly Membership Lite (7 days)",
+          "Weekly Membership (7 days)",
+          "Monthly Membership (30 days)"
         ],
         "PUBG Mobile": [
-          "Royale Pass (Free / Elite / Elite Plus)",
-          "Prime Subscription – monthly daily UC",
-          "Prime Plus – more UC + extra perks",
-          "Weekly Deal Packs – crates, skins",
-          "UC Top-Up Packs – direct UC purchase"
+          "Royale Pass (Elite)",
+          "Royale Pass (Elite Plus)"
         ],
         "Clash of Clans": [
-          "Builder Packs – extra builders + gems",
-          "Resource Packs – gold, elixir, dark elixir",
-          "Special Offers – magic items + gems",
-          "Seasonal / Event Packs",
-          "Note: No weekly/monthly membership like FF or PUBG"
+          "Gold Pass (Season Pass)"
         ],
         "Call of Duty: Mobile": [
-          "Battle Pass – seasonal rewards",
-          "Battle Pass Plus / BlackCell – premium version",
-          "Operator Bundles – character skins",
-          "Weapon Blueprint Packs",
-          "Limited-Time Event Packs"
+          "Battle Pass (Premium Pass)",
+          "Battle Pass Subscription (Ground Forces)"
         ]
       };
 
