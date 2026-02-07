@@ -1000,13 +1000,19 @@
             <td><input type="radio" name="pack" value="${usd}" /></td>
           `;
           row.addEventListener("click", () => {
+            const isActive = row.classList.contains("is-selected");
             document.querySelectorAll(".price-row").forEach((r) => r.classList.remove("is-selected"));
-            row.classList.add("is-selected");
-            row.querySelector("input").checked = true;
-            state.selectedPack = usd;
-            confirmPack.disabled = false;
+            document.querySelectorAll("input[name='pack']").forEach((input) => (input.checked = false));
+            if (isActive) {
+              state.selectedPack = null;
+            } else {
+              row.classList.add("is-selected");
+              row.querySelector("input").checked = true;
+              state.selectedPack = usd;
+              playSelectSound();
+            }
+            confirmPack.disabled = !(state.selectedPack || state.selectedPackType);
             updateFormDetails();
-            playSelectSound();
           });
           priceTableBody.appendChild(row);
         });
@@ -1034,6 +1040,10 @@
 
       const updateFormDetails = () => {
         if (!state.selectedPack && !state.selectedPackType) {
+          formPackUsd.value = "";
+          formRate.value = state.rate ? state.rate.toFixed(6) : "";
+          formTotalBdt.value = "";
+          formMessage.value = `Game: ${getGameName()}`;
           submitOrder.disabled = true;
           return;
         }
@@ -1210,14 +1220,20 @@
           item.className = "pack-item";
           item.innerHTML = `<input type="radio" name="packType" value="${label}" /> <span>${label}</span>`;
           item.addEventListener("click", () => {
+            const isActive = item.classList.contains("is-selected");
             document.querySelectorAll(".pack-item").forEach((node) => node.classList.remove("is-selected"));
-            item.classList.add("is-selected");
-            item.querySelector("input").checked = true;
-            state.selectedPackType = label;
-            state.selectedPackGame = gameName;
+            document.querySelectorAll("input[name='packType']").forEach((input) => (input.checked = false));
+            if (isActive) {
+              state.selectedPackType = null;
+            } else {
+              item.classList.add("is-selected");
+              item.querySelector("input").checked = true;
+              state.selectedPackType = label;
+              state.selectedPackGame = gameName;
+              playSelectSound();
+            }
             confirmPack.disabled = !(state.selectedPack || state.selectedPackType);
             updateFormDetails();
-            playSelectSound();
           });
           packList.appendChild(item);
         });
