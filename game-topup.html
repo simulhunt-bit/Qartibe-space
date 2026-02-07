@@ -738,6 +738,13 @@
             <span class="lang-bn">ভেরিফিকেশনের জন্য আমাদের সাথে যোগাযোগ করুন। অফিসিয়াল যোগাযোগ: Facebook পেজ এবং ওয়েবসাইট কন্টাক্ট ফর্ম। আমরা দ্রুত রিপ্লাই দিই এবং প্রতিটি অর্ডারে সাপোর্ট দিই — যাতে আপনি নিশ্চিন্তে টপ-আপ করতে পারেন।</span>
             <span class="lang-en">Before you place an order, reach out with any questions or verification needs. Official contacts: our Facebook page and website contact form. We reply fast and support every order—so you can top up with confidence.</span>
           </p>
+          <label style="display:flex;gap:10px;align-items:flex-start;margin-top:12px;">
+            <input type="checkbox" id="policyAgree" />
+            <span class="muted">
+              <span class="lang-bn">আমি গেম টপ-আপ প্রাইভেসি পলিসি পড়েছি এবং সম্মত।</span>
+              <span class="lang-en">I have read and agree to the Game Top-Up Privacy Policy.</span>
+            </span>
+          </label>
         </div>
 
         <div class="modal-actions">
@@ -864,6 +871,7 @@
       const formTotalBdt = document.getElementById("formTotalBdt");
       const formMessage = document.getElementById("formMessage");
       const submitOrder = document.getElementById("submitOrder");
+      const policyAgree = document.getElementById("policyAgree");
       const firstTopupSelect = document.getElementById("firstTopupSelect");
       const rangeTableBody = document.querySelector("#rangeTable tbody");
       const packRangeText = document.getElementById("packRangeText");
@@ -1077,7 +1085,7 @@
           messageLines.push(`Pack Type: ${state.selectedPackType}`);
         }
         formMessage.value = messageLines.join("\n");
-        submitOrder.disabled = false;
+        submitOrder.disabled = !(policyAgree && policyAgree.checked);
       };
 
       confirmPack.addEventListener("click", () => {
@@ -1085,6 +1093,12 @@
         document.getElementById("topupForm").scrollIntoView({ behavior: "smooth", block: "start" });
         playNextSound();
       });
+
+      if (policyAgree) {
+        policyAgree.addEventListener("change", () => {
+          updateFormDetails();
+        });
+      }
 
       const setRate = (rate) => {
         state.rate = rate;
