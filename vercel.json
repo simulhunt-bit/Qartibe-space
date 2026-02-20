@@ -1,0 +1,44 @@
+{
+  "rewrites": [
+    {
+      "source": "/portfolio",
+      "destination": "/portfolio/index.html"
+    },
+    {
+      "source": "/portfolio/",
+      "destination": "/portfolio/index.html"
+    },
+    {
+      "source": "/portfolio/:path*",
+      "destination": "/portfolio/index.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/blog/",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/game-topup",
+      "destination": "/"
+    },
+    {
+      "source": "/game-topup/",
+      "destination": "/"
+    },
+    {
+      "source": "/notes",
+      "destination": "/"
+    },
+    {
+      "source": "/notes/",
+      "destination": "/"
+    }
+  ]
+}
