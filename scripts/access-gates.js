@@ -63,8 +63,9 @@
   };
 
   const route = normalizePath(window.location.pathname);
-  const isHomePage = route === "/" || route === "/index";
-  const isPortfolioPage = route === "/portfolio";
+  const isHomePage = Boolean(document.querySelector('#contact form[action*="web3forms"]'));
+  const isPortfolioPage =
+    route === "/portfolio" || route.endsWith("/portfolio") || Boolean(document.getElementById("cmsPortfolioList"));
   const isTopupPage = false;
   const isNotesPage = false;
 
@@ -85,7 +86,7 @@
   };
 
   const setPortfolioNavVisibility = (isAuthenticated) => {
-    const portfolioLinks = document.querySelectorAll('a[href="/portfolio"], a[href="/portfolio/"]');
+    const portfolioLinks = document.querySelectorAll('a[href="/portfolio"], a[href="/portfolio/"], a[href="portfolio.html"], a[href="./portfolio.html"], a[href="portfolio"]');
     portfolioLinks.forEach((link) => {
       link.hidden = !isAuthenticated;
       link.setAttribute("aria-hidden", isAuthenticated ? "false" : "true");
@@ -258,3 +259,4 @@
     init();
   }
 })();
+
