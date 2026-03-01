@@ -449,7 +449,7 @@
         <button type="button" class="qs-inquiry-gate-close" data-inquiry-gate-close aria-label="Close sign-in popup">&times;</button>
         <img class="qs-inquiry-gate-logo" src="logo.png" alt="Qartibe Space logo" width="54" height="54" />
         <h2 id="qsInquiryGateTitle" class="qs-inquiry-gate-title">Qartibe Space</h2>
-        <p class="qs-inquiry-gate-copy">Sign in with Google before you continue inquiry.</p>
+        <p class="qs-inquiry-gate-copy">Sign in with Google to continue.</p>
         <button type="button" class="menu-toggle qs-inquiry-gate-google" data-inquiry-gate-google>Continue with Google</button>
         <p class="qs-inquiry-gate-status" data-inquiry-gate-status aria-live="polite"></p>
       </section>
@@ -470,24 +470,44 @@
 
     const googleBtn = backdrop.querySelector("[data-inquiry-gate-google]");
     googleBtn?.addEventListener("click", () => {
-      const status = backdrop.querySelector("[data-inquiry-gate-status]");
-      if (status) status.textContent = "";
-      const started = requestSignInFlow({
-        shouldOpenDashboard: false,
-        requireGoogle: true,
-        onPromptUnavailable: () => {
-          const latestStatus = backdrop.querySelector("[data-inquiry-gate-status]");
-          if (latestStatus) latestStatus.textContent = "Google prompt unavailable. Please try again.";
-        }
-      });
-      if (!started && status) {
-        status.textContent = "Preparing Google sign-in. Please tap again.";
-        initGoogleOneTap().catch(() => {});
-      }
+      triggerGoogleSignInFromInquiryGate();
     });
 
     document.body.appendChild(backdrop);
     return backdrop;
+  };
+
+  const triggerGoogleSignInFromInquiryGate = () => {
+    const backdrop = ensureInquiryGate();
+    const setStatus = (message) => {
+      const statusNode = backdrop.querySelector("[data-inquiry-gate-status]");
+      if (statusNode) statusNode.textContent = message;
+    };
+    const buildPromptOptions = () => ({
+      shouldOpenDashboard: false,
+      requireGoogle: true,
+      onPromptUnavailable: () => {
+        setStatus("Google prompt unavailable. Please try again.");
+      }
+    });
+
+    setStatus("");
+    const started = requestSignInFlow(buildPromptOptions());
+    if (started) return true;
+
+    setStatus("Preparing Google sign-in...");
+    initGoogleOneTap()
+      .then(() => {
+        const retryStarted = requestSignInFlow(buildPromptOptions());
+        if (!retryStarted) {
+          setStatus("Google prompt unavailable. Please try again.");
+        }
+      })
+      .catch(() => {
+        setStatus("Google sign-in setup failed. Please try again.");
+      });
+
+    return false;
   };
 
   const openInquiryGate = () => {
@@ -500,6 +520,7 @@
     if (button instanceof HTMLElement) {
       window.setTimeout(() => button.focus(), 0);
     }
+    triggerGoogleSignInFromInquiryGate();
   };
 
   const closeInquiryGate = (clearPending = false) => {
@@ -1068,7 +1089,7 @@
       signInBtn.style.display = "inline-flex";
       signInBtn.textContent = "Sign in";
       signInBtn.addEventListener("click", () => {
-        requestSignInFlow(false);
+        openInquiryGate();
       });
 
       wrap.appendChild(signInBtn);
@@ -1078,7 +1099,7 @@
   window.qsSetRecentInquiry = setRecentInquiry;
 
   window.qsRequestSignIn = () => {
-    requestSignInFlow(false);
+    openInquiryGate();
   };
 
   const init = () => {
