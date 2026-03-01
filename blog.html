@@ -1,0 +1,409 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog | Qartibe Space</title>
+    <meta name="description" content="Meta ads, CRO, SEO, and growth playbooks from Qartibe Space." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Qartibe Space" />
+    <meta name="theme-color" content="#0f2540" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Blog | Qartibe Space" />
+    <meta property="og:description" content="Meta ads, CRO, SEO, and growth playbooks from Qartibe Space." />
+    <meta property="og:url" content="https://qartibe.space/blog" />
+    <meta property="og:image" content="https://qartibe.space/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Blog | Qartibe Space" />
+    <meta name="twitter:description" content="Meta ads, CRO, SEO, and growth playbooks from Qartibe Space." />
+    <meta name="twitter:image" content="https://qartibe.space/logo.png" />
+    <link rel="canonical" href="https://qartibe.space/blog" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="preload" as="image" href="logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/blog.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Blog",
+        "url": "https://qartibe.space/blog",
+        "description": "Meta ads, CRO, SEO, and growth playbooks from Qartibe Space."
+      }
+    </script>
+  </head>
+  <body data-page="blog">
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand-link" href="/"><img src="logo.png" alt="Qartibe Space" width="28" height="28" style="border-radius:50%;background:#eaf2ff" /><span>Qartibe Space</span></a>
+        <nav class="nav-links" id="siteMenu">
+          <a href="/">Home</a>
+          <a href="/portfolio">Portfolio</a>
+          <a href="/blog">Blog</a>
+          <a href="/services">Services</a>
+          <a class="nav-cta-link" href="/#contact">Contact</a>
+        </nav>
+        <div class="nav-actions"></div>
+      </div>
+    </header>
+    <nav class="breadcrumb-wrap" aria-label="Breadcrumb">
+      <div class="container">
+        <ol id="breadcrumbTrail" class="breadcrumb-list"></ol>
+      </div>
+    </nav>
+
+    <main class="container section">
+      <h1 id="pageTitle">Latest Blog Posts</h1>
+      <p class="muted" id="pageNote">Practical growth notes you can apply this week.</p>
+      <section id="blogList" class="grid grid-2"><article class="card"><p class="muted">Loading posts...</p></article></section>
+    </main>
+
+    <footer>
+      <div class="container">
+        &copy; 2026 Qartibe Space. All rights reserved.
+        <a
+          href="https://www.facebook.com/qartibe/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Official Facebook page"
+          style="display:inline-flex;align-items:center;gap:6px;margin-left:12px;color:inherit;text-decoration:none;"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.62.77-1.62 1.55V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"
+            />
+          </svg>
+          <span>Official Facebook</span>
+        </a>
+      </div>
+    </footer>
+
+    <script src="scripts/header-auth.js" defer></script>
+    <script src="scripts/site-nav.js" defer></script>
+    <script src="scripts/access-gates.js" defer></script>
+    <script src="scripts/content-loader.js"></script>
+    <script>
+      const canonicalTag = document.querySelector('link[rel="canonical"]');
+      const ogTitleTag = document.querySelector('meta[property="og:title"]');
+      const ogDescriptionTag = document.querySelector('meta[property="og:description"]');
+      const ogUrlTag = document.querySelector('meta[property="og:url"]');
+      const twitterTitleTag = document.querySelector('meta[name="twitter:title"]');
+      const twitterDescriptionTag = document.querySelector('meta[name="twitter:description"]');
+
+      const updateSeoForPost = (post) => {
+        const detailUrl = `${window.location.origin}/blog/${encodeURIComponent(post.slug)}`;
+        const title = `${post.title_en} | Qartibe Space Blog`;
+        const description = String(post.summary_en || "Growth playbooks from Qartibe Space.");
+        document.title = title;
+        if (canonicalTag) canonicalTag.href = detailUrl;
+        if (ogTitleTag) ogTitleTag.content = title;
+        if (ogDescriptionTag) ogDescriptionTag.content = description;
+        if (ogUrlTag) ogUrlTag.content = detailUrl;
+        if (twitterTitleTag) twitterTitleTag.content = title;
+        if (twitterDescriptionTag) twitterDescriptionTag.content = description;
+      };
+
+      const getPostKey = () => {
+        const cleanPath = window.location.pathname.replace(/\/+$/, "");
+        const match = cleanPath.match(/\/blog\/([^/]+)$/i);
+        if (match && match[1]) return decodeURIComponent(match[1]).trim().toLowerCase();
+        const params = new URLSearchParams(window.location.search);
+        return String(params.get("post") || "").trim().toLowerCase();
+      };
+
+      const escapeHtml = (value) =>
+        String(value || "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+
+      const formatDate = (value) => {
+        if (!value) return "";
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return String(value);
+        return date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+      };
+
+      const normalizeKey = (value) => String(value || "").trim().toLowerCase();
+
+      const toSafeHref = (value) => {
+        if (typeof value !== "string" || !value.trim()) return "";
+        const href = value.trim();
+        if (/^(https?:|mailto:|tel:)/i.test(href)) return href;
+        if (href.startsWith("/blog/") || href === "/blog" || href.startsWith("#")) return href;
+        return "";
+      };
+
+      const renderMarks = (textNode) => {
+        let value = escapeHtml(textNode?.value || "");
+        const marks = Array.isArray(textNode?.marks) ? textNode.marks : [];
+        marks.forEach((mark) => {
+          switch (mark?.type) {
+            case "bold":
+              value = `<strong>${value}</strong>`;
+              break;
+            case "italic":
+              value = `<em>${value}</em>`;
+              break;
+            case "underline":
+              value = `<u>${value}</u>`;
+              break;
+            case "code":
+              value = `<code>${value}</code>`;
+              break;
+            case "superscript":
+              value = `<sup>${value}</sup>`;
+              break;
+            case "subscript":
+              value = `<sub>${value}</sub>`;
+              break;
+            case "strikethrough":
+              value = `<s>${value}</s>`;
+              break;
+            default:
+              break;
+          }
+        });
+        return value;
+      };
+
+      const renderChildren = (node, ctx) =>
+        (Array.isArray(node?.content) ? node.content : []).map((child) => renderRichNode(child, ctx)).join("");
+
+      const renderRichNode = (node, ctx) => {
+        if (!node || typeof node !== "object") return "";
+        if (node.nodeType === "text") return renderMarks(node);
+        const children = renderChildren(node, ctx);
+        switch (node.nodeType) {
+          case "document":
+            return children;
+          case "paragraph":
+            return `<p>${children}</p>`;
+          case "heading-1":
+            return `<h1>${children}</h1>`;
+          case "heading-2":
+            return `<h2>${children}</h2>`;
+          case "heading-3":
+            return `<h3>${children}</h3>`;
+          case "heading-4":
+            return `<h4>${children}</h4>`;
+          case "heading-5":
+            return `<h5>${children}</h5>`;
+          case "heading-6":
+            return `<h6>${children}</h6>`;
+          case "unordered-list":
+            return `<ul>${children}</ul>`;
+          case "ordered-list":
+            return `<ol>${children}</ol>`;
+          case "list-item":
+            return `<li>${children}</li>`;
+          case "blockquote":
+            return `<blockquote>${children}</blockquote>`;
+          case "hr":
+            return "<hr />";
+          case "table":
+            return `<table>${children}</table>`;
+          case "table-row":
+            return `<tr>${children}</tr>`;
+          case "table-header-cell":
+            return `<th>${children}</th>`;
+          case "table-cell":
+            return `<td>${children}</td>`;
+          case "hyperlink": {
+            const href = toSafeHref(node?.data?.uri || "");
+            if (!href) return children;
+            if (/^(https?:|mailto:|tel:)/i.test(href)) {
+              return `<a href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${children}</a>`;
+            }
+            return `<a href="${escapeHtml(href)}">${children}</a>`;
+          }
+          case "entry-hyperlink": {
+            const targetId = node?.data?.target?.sys?.id;
+            const relatedPost = targetId ? ctx.idToPost.get(targetId) : null;
+            return relatedPost
+              ? `<a href="/blog/${encodeURIComponent(relatedPost.slug)}">${children || escapeHtml(relatedPost.title_en)}</a>`
+              : children;
+          }
+          case "embedded-asset-block": {
+            const fileUrl = node?.data?.target?.fields?.file?.url;
+            const title = node?.data?.target?.fields?.title || "Embedded image";
+            if (typeof fileUrl !== "string" || !fileUrl.trim()) return "";
+            const src = fileUrl.startsWith("http") ? fileUrl : `https:${fileUrl}`;
+            return `<figure><img src="${escapeHtml(src)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async" /></figure>`;
+          }
+          default:
+            return children;
+        }
+      };
+
+      const renderRichSection = (label, documentNode, ctx) => {
+        if (!documentNode || !Array.isArray(documentNode.content) || documentNode.content.length === 0) return "";
+        return `
+          <section class="card rich-section">
+            <h3>${escapeHtml(label)}</h3>
+            <div class="post-content">${renderRichNode(documentNode, ctx)}</div>
+          </section>
+        `;
+      };
+
+      const renderRelatedPosts = (post, ctx) => {
+        const relatedSlugs = Array.isArray(post?.relatedSlugs) ? post.relatedSlugs : [];
+        const recommendedSlugs = Array.isArray(post?.recommendedSlugs) ? post.recommendedSlugs : [];
+        const allRelatedSlugs = Array.from(
+          new Set([...relatedSlugs, ...recommendedSlugs].map((slug) => normalizeKey(slug)).filter(Boolean))
+        ).filter((slug) => slug !== normalizeKey(post?.slug));
+        const relatedPosts = allRelatedSlugs.map((slug) => ctx.slugToPost.get(slug)).filter(Boolean);
+        if (!relatedPosts.length) return "";
+        return `
+          <section class="card rich-section">
+            <h3>Related posts</h3>
+            <ul class="related-list">
+              ${relatedPosts
+                .map(
+                  (item) =>
+                    `<li><a href="/blog/${encodeURIComponent(item.slug)}">${escapeHtml(item.title_en)}</a></li>`
+                )
+                .join("")}
+            </ul>
+          </section>
+        `;
+      };
+
+      const renderList = (posts) => {
+        const list = document.getElementById("blogList");
+        list.classList.add("grid-2");
+        if (!posts.length) {
+          list.innerHTML = '<article class="card"><p class="muted">No blog posts yet.</p></article>';
+          return;
+        }
+        list.innerHTML = posts
+          .map((post) => {
+            const published = formatDate(post.publishedDate || post.date);
+            const author = String(post.author || "").trim();
+            return `
+              <article class="card">
+                <div class="meta-row">
+                  ${published ? `<span class="pill">${escapeHtml(published)}</span>` : ""}
+                  ${author ? `<span class="pill">By ${escapeHtml(author)}</span>` : ""}
+                </div>
+                <h3>${escapeHtml(post.title_en)}</h3>
+                <p class="muted">${escapeHtml(post.summary_en || "")}</p>
+                <a class="btn btn-outline" href="/blog/${encodeURIComponent(post.slug)}">Read article</a>
+              </article>
+            `;
+          })
+          .join("");
+      };
+
+      const renderSingle = (post, ctx) => {
+        const list = document.getElementById("blogList");
+        const pageTitle = document.getElementById("pageTitle");
+        const pageNote = document.getElementById("pageNote");
+        const published = formatDate(post.publishedDate || post.date);
+        const author = String(post.author || "").trim();
+
+        pageTitle.textContent = post.title_en;
+        pageNote.textContent = post.summary_en || "";
+        updateSeoForPost(post);
+        list.classList.remove("grid-2");
+
+        const contentHtml = post?.richContent?.content
+          ? renderRichSection("Content", post.richContent.content, ctx)
+          : `
+              <section class="card rich-section">
+                <h3>Content</h3>
+                <div class="post-content"><p>${escapeHtml(post.body_en || post.summary_en || "")}</p></div>
+              </section>
+            `;
+        const tipsHtml = renderRichSection("Actionable Tips", post?.richContent?.actionableTips, ctx);
+        const examplesHtml = renderRichSection("Examples", post?.richContent?.examples, ctx);
+        const imagePrompt = String(post?.imagePrompt || "").trim();
+        const imagePromptHtml = imagePrompt
+          ? `
+              <section class="card rich-section">
+                <h3>Cover Image Prompt</h3>
+                <div class="post-content"><p>${escapeHtml(imagePrompt)}</p></div>
+              </section>
+            `
+          : "";
+        const relatedHtml = renderRelatedPosts(post, ctx);
+
+        list.innerHTML = `
+          <article class="card">
+            <div class="meta-row">
+              ${published ? `<span class="pill">${escapeHtml(published)}</span>` : ""}
+              ${author ? `<span class="pill">By ${escapeHtml(author)}</span>` : ""}
+            </div>
+            <h2>${escapeHtml(post.title_en)}</h2>
+            <p class="muted">${escapeHtml(post.summary_en || "")}</p>
+            <a class="btn btn-outline" href="/blog">Back to all posts</a>
+          </article>
+          ${contentHtml}
+          ${tipsHtml}
+          ${examplesHtml}
+          ${imagePromptHtml}
+          ${relatedHtml}
+        `;
+      };
+
+      (async () => {
+        try {
+          const posts = await window.QartibeContentLoader.getBlogPosts();
+          const key = getPostKey();
+          const slugToPost = new Map();
+          const idToPost = new Map();
+          const titleToPost = new Map();
+          posts.forEach((post) => {
+            if (post?.slug) slugToPost.set(normalizeKey(post.slug), post);
+            if (post?.id) idToPost.set(String(post.id), post);
+            if (post?.title_en) titleToPost.set(normalizeKey(post.title_en), post);
+          });
+          const ctx = { slugToPost, idToPost, titleToPost };
+
+          if (!key) {
+            renderList(posts);
+            return;
+          }
+
+          const post = posts.find((item) =>
+            [item.slug, item.id].map((x) => normalizeKey(x)).includes(key)
+          );
+          if (!post) {
+            document.getElementById("pageTitle").textContent = "Post not found";
+            document.getElementById("pageNote").textContent = "The requested post does not exist.";
+            document.getElementById("blogList").innerHTML =
+              '<article class="card"><a class="btn btn-outline" href="/blog">Back to all posts</a></article>';
+            return;
+          }
+
+          if ((!post.relatedSlugs || !post.relatedSlugs.length) && Array.isArray(post.relatedPostIds)) {
+            post.relatedSlugs = post.relatedPostIds
+              .map((id) => idToPost.get(String(id)))
+              .filter(Boolean)
+              .map((item) => item.slug);
+          }
+          if ((!post.recommendedSlugs || !post.recommendedSlugs.length) && Array.isArray(post.recommendedPostTitles)) {
+            post.recommendedSlugs = post.recommendedPostTitles
+              .map((title) => titleToPost.get(normalizeKey(title)))
+              .filter(Boolean)
+              .map((item) => item.slug);
+          }
+
+          if (window.location.pathname !== `/blog/${post.slug}`) {
+            history.replaceState({}, "", `/blog/${encodeURIComponent(post.slug)}${window.location.hash}`);
+          }
+          renderSingle(post, ctx);
+        } catch {
+          document.getElementById("blogList").innerHTML =
+            '<article class="card"><p class="muted">Unable to load blog posts.</p></article>';
+        }
+      })();
+    </script>
+  </body>
+</html>
+
+
+
+
+
+

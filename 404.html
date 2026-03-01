@@ -1,0 +1,76 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page Not Found | Qartibe Space</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <script>
+      (() => {
+        const current = new URL(window.location.href);
+        const cleanPath = current.pathname.replace(/\/+$/, "") || "/";
+
+        const redirectTo = (targetPath) => {
+          window.location.replace(`${targetPath}${current.hash || ""}`);
+        };
+
+        if (cleanPath === "/blog.html") {
+          const post = current.searchParams.get("post");
+          if (post) {
+            redirectTo(`/blog/${encodeURIComponent(post)}`);
+            return;
+          }
+          redirectTo("/blog");
+          return;
+        }
+
+        if (cleanPath === "/portfolio.html") {
+          const project = current.searchParams.get("project");
+          if (project) {
+            redirectTo(`/portfolio/${encodeURIComponent(project)}`);
+            return;
+          }
+          redirectTo("/portfolio");
+          return;
+        }
+
+        if (cleanPath === "/services.html") {
+          redirectTo("/services");
+          return;
+        }
+
+        if (cleanPath === "/index.html" || cleanPath === "/index") {
+          redirectTo("/");
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="/styles/404.css" />
+  </head>
+  <body>
+    <main class="not-found-main">
+      <div class="card">
+        <a class="brand-link" href="/" aria-label="Qartibe Space home">
+          <img src="/logo.png" alt="Qartibe Space logo" width="40" height="40" decoding="async" />
+          <span>Qartibe Space</span>
+        </a>
+        <p class="status">Error 404</p>
+        <h1>Page not found</h1>
+        <p class="muted">The URL may be old or mistyped. Use one of these pages:</p>
+        <div class="links">
+          <a class="btn primary" href="/">Home</a>
+          <a class="btn" href="/services">Services</a>
+          <a class="btn" href="/portfolio">Portfolio</a>
+          <a class="btn" href="/blog">Blog</a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
+
+
+
+

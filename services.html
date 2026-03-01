@@ -1,0 +1,176 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Services | Qartibe Space</title>
+    <meta name="description" content="Growth services from Qartibe Space for e-commerce and top-up brands." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Qartibe Space" />
+    <meta name="theme-color" content="#0f2540" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Services | Qartibe Space" />
+    <meta property="og:description" content="Growth services from Qartibe Space for e-commerce and top-up brands." />
+    <meta property="og:url" content="https://qartibe.space/services" />
+    <meta property="og:image" content="https://qartibe.space/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Services | Qartibe Space" />
+    <meta name="twitter:description" content="Growth services from Qartibe Space for e-commerce and top-up brands." />
+    <meta name="twitter:image" content="https://qartibe.space/logo.png" />
+    <link rel="canonical" href="https://qartibe.space/services" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="preload" as="image" href="logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/services.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Services",
+        "url": "https://qartibe.space/services",
+        "description": "Growth services from Qartibe Space for e-commerce and top-up brands."
+      }
+    </script>
+  </head>
+  <body data-page="services">
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand-link" href="/"><img src="logo.png" alt="Qartibe Space" width="28" height="28" style="border-radius:50%;background:#eaf2ff" /><span>Qartibe Space</span></a>
+        <nav class="nav-links" id="siteMenu">
+          <a href="/">Home</a>
+          <a href="/portfolio">Portfolio</a>
+          <a href="/blog">Blog</a>
+          <a href="/services">Services</a>
+          <a class="nav-cta-link" href="/#contact">Contact</a>
+        </nav>
+        <div class="nav-actions"></div>
+      </div>
+    </header>
+    <nav class="breadcrumb-wrap" aria-label="Breadcrumb">
+      <div class="container">
+        <ol id="breadcrumbTrail" class="breadcrumb-list"></ol>
+      </div>
+    </nav>
+
+    <main class="container section">
+      <h1>Our Services</h1>
+      <p class="muted">Every card below is loaded dynamically from your content file.</p>
+      <section id="serviceList" class="grid grid-2"><article class="card"><p class="muted">Loading services...</p></article></section>
+    </main>
+
+    <footer>
+      <div class="container">
+        &copy; 2026 Qartibe Space. All rights reserved.
+        <a
+          href="https://www.facebook.com/qartibe/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Official Facebook page"
+          style="display:inline-flex;align-items:center;gap:6px;margin-left:12px;color:inherit;text-decoration:none;"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.62.77-1.62 1.55V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"
+            />
+          </svg>
+          <span>Official Facebook</span>
+        </a>
+      </div>
+    </footer>
+
+    <script src="scripts/header-auth.js" defer></script>
+    <script src="scripts/site-nav.js" defer></script>
+    <script src="scripts/access-gates.js" defer></script>
+    <script src="scripts/content-loader.js"></script>
+    <script>
+      const COUNTER_NAMESPACE = "qartibe-space-services";
+      const COUNTER_API_BASE = "https://api.counterapi.dev/v1";
+
+      const escapeHtml = (value) =>
+        String(value || "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+
+      const normalizeServiceKey = (value) =>
+        String(value || "")
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9-]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+
+      const getServiceKey = (service) => normalizeServiceKey(service?.slug || service?.id || service?.title_en || "");
+
+      const getCounterUrl = (key) =>
+        `${COUNTER_API_BASE}/${encodeURIComponent(COUNTER_NAMESPACE)}/${encodeURIComponent(key)}/up`;
+
+      const recordSharedClick = (key) => {
+        if (!key) return;
+        fetch(getCounterUrl(key), { cache: "no-store", keepalive: true }).catch(() => {});
+      };
+
+      const renderList = (services) => {
+        const list = document.getElementById("serviceList");
+        if (!services.length) {
+          list.innerHTML = '<article class="card"><p class="muted">No services available yet.</p></article>';
+          return;
+        }
+
+        list.innerHTML = services
+          .map((service) => {
+            const highlights = Array.isArray(service.highlights) ? service.highlights : [];
+            const highlightHtml = highlights.length
+              ? `<ul class="service-highlights">${highlights.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`
+              : "";
+            const inquireLabel = String(service.inquireLabel || "Inquire");
+            const serviceKey = getServiceKey(service);
+
+            return `
+              <article class="card">
+                <h3>${escapeHtml(service.title_en || "Service")}</h3>
+                <p class="muted">${escapeHtml(service.summary_en || "")}</p>
+                ${highlightHtml}
+                <div class="actions">
+                  <a class="btn js-service-inquire" href="/#contact" data-service-key="${escapeHtml(serviceKey)}">${escapeHtml(
+              inquireLabel
+            )}</a>
+                </div>
+              </article>
+            `;
+          })
+          .join("");
+      };
+
+      const wireServiceClickTracking = () => {
+        const list = document.getElementById("serviceList");
+        if (!list || list.dataset.clickTrackingBound === "true") return;
+        list.dataset.clickTrackingBound = "true";
+        list.addEventListener("click", (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+          const link = target.closest(".js-service-inquire");
+          if (!link) return;
+          const key = String(link.getAttribute("data-service-key") || "").trim();
+          if (!key) return;
+          recordSharedClick(key);
+        });
+      };
+
+      (async () => {
+        try {
+          const services = await window.QartibeContentLoader.getServices();
+          renderList(services);
+          wireServiceClickTracking();
+        } catch {
+          document.getElementById("serviceList").innerHTML =
+            '<article class="card"><p class="muted">Unable to load services.</p></article>';
+        }
+      })();
+    </script>
+  </body>
+</html>
+
+
+
+
+
