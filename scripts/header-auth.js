@@ -24,7 +24,7 @@
   let liveInquiryBroadcastBound = false;
   let dashboardEscapeBound = false;
   let pendingInquiryAction = null;
-  let googleInitStarted = false;
+  let googleInitPromise = null;
   let googleReady = false;
   let openDashboardAfterGoogleAuth = false;
 
@@ -486,8 +486,17 @@
     const buildPromptOptions = () => ({
       shouldOpenDashboard: false,
       requireGoogle: true,
-      onPromptUnavailable: () => {
-        setStatus("Google prompt unavailable. Please try again.");
+      onPromptUnavailable: (notification) => {
+        const notDisplayedReason =
+          typeof notification?.getNotDisplayedReason === "function" ? notification.getNotDisplayedReason() : "";
+        const skippedReason =
+          typeof notification?.getSkippedReason === "function" ? notification.getSkippedReason() : "";
+        const reason = toCleanString(notDisplayedReason || skippedReason, 80);
+        if (reason) {
+          setStatus(`Google prompt unavailable (${reason}). Tap Continue with Google again.`);
+          return;
+        }
+        setStatus("Google prompt unavailable. Tap Continue with Google again.");
       }
     });
 
@@ -497,10 +506,14 @@
 
     setStatus("Preparing Google sign-in...");
     initGoogleOneTap()
-      .then(() => {
+      .then((isReady) => {
+        if (!isReady) {
+          setStatus("Google sign-in is not configured. Please refresh and try again.");
+          return;
+        }
         const retryStarted = requestSignInFlow(buildPromptOptions());
         if (!retryStarted) {
-          setStatus("Google prompt unavailable. Please try again.");
+          setStatus("Google is ready. Tap Continue with Google again.");
         }
       })
       .catch(() => {
@@ -832,30 +845,54 @@
     return true;
   };
 
-  const initGoogleOneTap = async () => {
-    if (googleInitStarted || Boolean(readSession())) return;
-    googleInitStarted = true;
-
-    const config = await readAuthConfig();
-    const clientId = toCleanString(config?.googleClientId, 220);
-    if (!clientId) return;
-
-    const loaded = await loadGoogleIdentityScript();
-    if (!loaded || !window.google?.accounts?.id) return;
-
-    try {
-      window.google.accounts.id.initialize({
-        client_id: clientId,
-        callback: handleGoogleCredential,
-        auto_select: false,
-        cancel_on_tap_outside: true,
-        context: "signin"
-      });
-      googleReady = true;
-      window.google.accounts.id.prompt();
-    } catch {
-      googleReady = false;
+  const initGoogleOneTap = async (promptAfterInit = false) => {
+    if (Boolean(readSession())) return false;
+    if (googleReady && window.google?.accounts?.id) {
+      if (promptAfterInit) {
+        try {
+          window.google.accounts.id.prompt();
+        } catch {}
+      }
+      return true;
     }
+    if (googleInitPromise) return googleInitPromise;
+
+    googleInitPromise = (async () => {
+      const config = await readAuthConfig();
+      const clientId = toCleanString(config?.googleClientId, 220);
+      if (!clientId) {
+        googleReady = false;
+        return false;
+      }
+
+      const loaded = await loadGoogleIdentityScript();
+      if (!loaded || !window.google?.accounts?.id) {
+        googleReady = false;
+        return false;
+      }
+
+      try {
+        window.google.accounts.id.initialize({
+          client_id: clientId,
+          callback: handleGoogleCredential,
+          auto_select: false,
+          cancel_on_tap_outside: true,
+          context: "signin"
+        });
+        googleReady = true;
+        if (promptAfterInit) {
+          window.google.accounts.id.prompt();
+        }
+        return true;
+      } catch {
+        googleReady = false;
+        return false;
+      }
+    })().finally(() => {
+      googleInitPromise = null;
+    });
+
+    return googleInitPromise;
   };
 
   const ensureDashboard = () => {
@@ -1107,7 +1144,7 @@
     consumePendingInquiryToast();
     bindActivityTracking();
     renderAuth();
-    initGoogleOneTap();
+    initGoogleOneTap(true).catch(() => {});
   };
 
   if (document.readyState === "loading") {
