@@ -1,4 +1,36 @@
 {
+  "redirects": [
+    {
+      "source": "/blog/:slug",
+      "destination": "/blog.html?post=:slug",
+      "permanent": false
+    },
+    {
+      "source": "/portfolio/:slug",
+      "destination": "/portfolio.html?project=:slug",
+      "permanent": false
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog.html",
+      "permanent": false
+    },
+    {
+      "source": "/blog/",
+      "destination": "/blog.html",
+      "permanent": false
+    },
+    {
+      "source": "/portfolio",
+      "destination": "/portfolio.html",
+      "permanent": false
+    },
+    {
+      "source": "/portfolio/",
+      "destination": "/portfolio.html",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/portfolio",
