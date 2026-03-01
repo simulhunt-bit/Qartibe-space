@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Qartibe Space Portfolio</title>
+    <meta name="description" content="Portfolio case studies from Qartibe Space." />
+    <link rel="canonical" href="https://qartibe.space/portfolio" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="preload" as="image" href="logo.png" />
+    <style>
+      :root { --bg:#fff7ee; --ink:#11243d; --muted:#586478; --line:#d7dbe3; --brand:#ff6a2a; }
+      * { box-sizing: border-box; }
+      body { margin:0; font-family: Segoe UI, Arial, sans-serif; color:var(--ink); background:var(--bg); }
+      .container { max-width:1080px; margin:0 auto; padding:0 16px; }
+      .nav { position:sticky; top:0; z-index:10; background:#102844; color:#fff; border-bottom:1px solid #274466; }
+      .nav-inner { display:flex; align-items:center; gap:12px; padding:10px 0; }
+      .brand-link { display:flex; align-items:center; gap:10px; font-weight:700; color:#fff; text-decoration:none; }
+      .nav-links { margin-left:auto; display:flex; gap:8px; }
+      .nav-links a { padding:8px 10px; border-radius:10px; background:rgba(255,255,255,.09); color:#fff; text-decoration:none; }
+      .nav-cta-link { background:var(--brand) !important; color:#fff; }
+      .menu-toggle { border:1px solid #3d5b7d; border-radius:10px; background:#193a5f; color:#fff; padding:8px 10px; }
+      .section { padding:28px 0; }
+      .grid { display:grid; gap:14px; }
+      .grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); }
+      .card { border:1px solid var(--line); border-radius:14px; background:#fff; padding:16px; }
+      .muted { color:var(--muted); }
+      .btn { display:inline-block; padding:10px 14px; border-radius:10px; background:var(--brand); color:#fff; text-decoration:none; border:none; }
+      .btn-outline { background:#fff; color:#11243d; border:1px solid var(--line); }
+      .tags { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0; }
+      .tag { padding:4px 8px; border:1px solid var(--line); border-radius:999px; font-size:12px; }
+      footer { border-top:1px solid var(--line); margin-top:28px; padding:18px 0; color:var(--muted); }
+    </style>
+    <script>
+      (() => {
+        const path = window.location.pathname.replace(/\/+$/, "");
+        const match = path.match(/\/portfolio\/([^/]+)$/i);
+        if (match && match[1]) {
+          const search = new URLSearchParams(window.location.search);
+          search.set("project", match[1]);
+          window.location.replace(`portfolio.html?${search.toString()}${window.location.hash}`);
+        }
+      })();
+    </script>
+  </head>
+  <body data-page="portfolio">
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand-link" href="index.html"><img src="logo.png" alt="Qartibe Space" width="28" height="28" style="border-radius:50%;background:#fff" /><span>Qartibe Space</span></a>
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="blog.html">Blog</a>
+          <a href="index.html#services">Services</a>
+          <a class="nav-cta-link" href="index.html#contact">Contact</a>
+        </nav>
+        <div class="nav-actions"></div>
+      </div>
+    </header>
+
+    <main class="container section">
+      <h1 id="pageTitle">Latest Portfolio Projects</h1>
+      <p class="muted" id="pageNote">Case studies from paid growth, CRO, and SEO execution.</p>
+      <section id="projectList" class="grid grid-2"><article class="card"><p class="muted">Loading projects...</p></article></section>
+    </main>
+
+    <footer><div class="container">© 2026 Qartibe Space. All rights reserved.</div></footer>
+
+    <script src="scripts/header-auth.js" defer></script>
+    <script src="scripts/access-gates.js" defer></script>
+    <script src="scripts/content-loader.js"></script>
+    <script>
+      const getProjectKey = () => {
+        const params = new URLSearchParams(window.location.search);
+        return String(params.get("project") || "").trim().toLowerCase();
+      };
+
+      const escapeHtml = (value) =>
+        String(value || "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+
+      const renderList = (projects) => {
+        const list = document.getElementById("projectList");
+        if (!projects.length) {
+          list.innerHTML = '<article class="card"><p class="muted">No projects yet.</p></article>';
+          return;
+        }
+        list.innerHTML = projects
+          .map((project) => {
+            const tags = Array.isArray(project.tags_en) ? project.tags_en : [];
+            return `
+              <article class="card">
+                <h3>${escapeHtml(project.title_en)}</h3>
+                <p class="muted">${escapeHtml(project.summary_en || "")}</p>
+                <div class="tags">${tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+                <p><strong>Result:</strong> ${escapeHtml(project.result_en || "")}</p>
+                <a class="btn btn-outline" href="portfolio.html?project=${encodeURIComponent(project.slug)}">View details</a>
+              </article>
+            `;
+          })
+          .join("");
+      };
+
+      const renderSingle = (project) => {
+        const list = document.getElementById("projectList");
+        const pageTitle = document.getElementById("pageTitle");
+        const pageNote = document.getElementById("pageNote");
+        const tags = Array.isArray(project.tags_en) ? project.tags_en : [];
+
+        pageTitle.textContent = project.title_en;
+        pageNote.textContent = project.summary_en || "";
+        list.classList.remove("grid-2");
+        list.innerHTML = `
+          <article class="card">
+            <h2>${escapeHtml(project.title_en)}</h2>
+            <p>${escapeHtml(project.summary_en || "")}</p>
+            <div class="tags">${tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+            <p><strong>Result:</strong> ${escapeHtml(project.result_en || "")}</p>
+            <a class="btn btn-outline" href="portfolio.html">Back to all projects</a>
+          </article>
+        `;
+      };
+
+      (async () => {
+        try {
+          const projects = await window.QartibeContentLoader.getPortfolioProjects();
+          const key = getProjectKey();
+          if (!key) {
+            renderList(projects);
+            return;
+          }
+          const project = projects.find((item) => [item.slug, item.id].map((x) => String(x || "").toLowerCase()).includes(key));
+          if (!project) {
+            document.getElementById("pageTitle").textContent = "Project not found";
+            document.getElementById("pageNote").textContent = "The requested project does not exist.";
+            document.getElementById("projectList").innerHTML = '<article class="card"><a class="btn btn-outline" href="portfolio.html">Back to all projects</a></article>';
+            return;
+          }
+          renderSingle(project);
+        } catch {
+          document.getElementById("projectList").innerHTML = '<article class="card"><p class="muted">Unable to load projects.</p></article>';
+        }
+      })();
+    </script>
+  </body>
+</html>

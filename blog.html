@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Qartibe Space Blog</title>
+    <meta name="description" content="Meta ads, CRO, SEO, and growth playbooks from Qartibe Space." />
+    <link rel="canonical" href="https://qartibe.space/blog" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="preload" as="image" href="logo.png" />
+    <style>
+      :root { --bg:#fff7ee; --ink:#11243d; --muted:#586478; --line:#d7dbe3; --brand:#ff6a2a; }
+      * { box-sizing: border-box; }
+      body { margin:0; font-family: Segoe UI, Arial, sans-serif; color:var(--ink); background:var(--bg); }
+      .container { max-width:1080px; margin:0 auto; padding:0 16px; }
+      .nav { position:sticky; top:0; z-index:10; background:#102844; color:#fff; border-bottom:1px solid #274466; }
+      .nav-inner { display:flex; align-items:center; gap:12px; padding:10px 0; }
+      .brand-link { display:flex; align-items:center; gap:10px; font-weight:700; color:#fff; text-decoration:none; }
+      .nav-links { margin-left:auto; display:flex; gap:8px; }
+      .nav-links a { padding:8px 10px; border-radius:10px; background:rgba(255,255,255,.09); color:#fff; text-decoration:none; }
+      .nav-cta-link { background:var(--brand) !important; color:#fff; }
+      .menu-toggle { border:1px solid #3d5b7d; border-radius:10px; background:#193a5f; color:#fff; padding:8px 10px; }
+      .section { padding:28px 0; }
+      .grid { display:grid; gap:14px; }
+      .grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); }
+      .card { border:1px solid var(--line); border-radius:14px; background:#fff; padding:16px; }
+      .muted { color:var(--muted); }
+      .btn { display:inline-block; padding:10px 14px; border-radius:10px; background:var(--brand); color:#fff; text-decoration:none; border:none; }
+      .btn-outline { background:#fff; color:#11243d; border:1px solid var(--line); }
+      footer { border-top:1px solid var(--line); margin-top:28px; padding:18px 0; color:var(--muted); }
+    </style>
+    <script>
+      (() => {
+        const path = window.location.pathname.replace(/\/+$/, "");
+        const match = path.match(/\/blog\/([^/]+)$/i);
+        if (match && match[1]) {
+          const search = new URLSearchParams(window.location.search);
+          search.set("post", match[1]);
+          window.location.replace(`blog.html?${search.toString()}${window.location.hash}`);
+        }
+      })();
+    </script>
+  </head>
+  <body data-page="blog">
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand-link" href="index.html"><img src="logo.png" alt="Qartibe Space" width="28" height="28" style="border-radius:50%;background:#fff" /><span>Qartibe Space</span></a>
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="blog.html">Blog</a>
+          <a href="index.html#services">Services</a>
+          <a class="nav-cta-link" href="index.html#contact">Contact</a>
+        </nav>
+        <div class="nav-actions"></div>
+      </div>
+    </header>
+
+    <main class="container section">
+      <h1 id="pageTitle">Latest Blog Posts</h1>
+      <p class="muted" id="pageNote">Practical growth notes you can apply this week.</p>
+      <section id="blogList" class="grid grid-2"><article class="card"><p class="muted">Loading posts...</p></article></section>
+    </main>
+
+    <footer><div class="container">© 2026 Qartibe Space. All rights reserved.</div></footer>
+
+    <script src="scripts/header-auth.js" defer></script>
+    <script src="scripts/access-gates.js" defer></script>
+    <script src="scripts/content-loader.js"></script>
+    <script>
+      const getPostKey = () => {
+        const params = new URLSearchParams(window.location.search);
+        return String(params.get("post") || "").trim().toLowerCase();
+      };
+
+      const escapeHtml = (value) =>
+        String(value || "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+
+      const renderList = (posts) => {
+        const list = document.getElementById("blogList");
+        if (!posts.length) {
+          list.innerHTML = '<article class="card"><p class="muted">No blog posts yet.</p></article>';
+          return;
+        }
+        list.innerHTML = posts
+          .map((post) => `
+            <article class="card">
+              <p class="muted">${escapeHtml(post.date || "")}</p>
+              <h3>${escapeHtml(post.title_en)}</h3>
+              <p class="muted">${escapeHtml(post.summary_en || "")}</p>
+              <a class="btn btn-outline" href="blog.html?post=${encodeURIComponent(post.slug)}">Read article</a>
+            </article>
+          `)
+          .join("");
+      };
+
+      const renderSingle = (post) => {
+        const list = document.getElementById("blogList");
+        const pageTitle = document.getElementById("pageTitle");
+        const pageNote = document.getElementById("pageNote");
+        pageTitle.textContent = post.title_en;
+        pageNote.textContent = post.summary_en || "";
+        list.classList.remove("grid-2");
+        list.innerHTML = `
+          <article class="card">
+            <p class="muted">${escapeHtml(post.date || "")}</p>
+            <h2>${escapeHtml(post.title_en)}</h2>
+            <p>${escapeHtml(post.body_en || post.summary_en || "")}</p>
+            <a class="btn btn-outline" href="blog.html">Back to all posts</a>
+          </article>
+        `;
+      };
+
+      (async () => {
+        try {
+          const posts = await window.QartibeContentLoader.getBlogPosts();
+          const key = getPostKey();
+          if (!key) {
+            renderList(posts);
+            return;
+          }
+          const post = posts.find((item) => [item.slug, item.id].map((x) => String(x || "").toLowerCase()).includes(key));
+          if (!post) {
+            document.getElementById("pageTitle").textContent = "Post not found";
+            document.getElementById("pageNote").textContent = "The requested post does not exist.";
+            document.getElementById("blogList").innerHTML = '<article class="card"><a class="btn btn-outline" href="blog.html">Back to all posts</a></article>';
+            return;
+          }
+          renderSingle(post);
+        } catch {
+          document.getElementById("blogList").innerHTML = '<article class="card"><p class="muted">Unable to load blog posts.</p></article>';
+        }
+      })();
+    </script>
+  </body>
+</html>
