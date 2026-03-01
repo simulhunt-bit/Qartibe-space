@@ -469,7 +469,14 @@
     googleBtn?.addEventListener("click", () => {
       const status = backdrop.querySelector("[data-inquiry-gate-status]");
       if (status) status.textContent = "";
-      const started = requestSignInFlow({ shouldOpenDashboard: false, requireGoogle: true });
+      const started = requestSignInFlow({
+        shouldOpenDashboard: false,
+        requireGoogle: true,
+        onPromptUnavailable: () => {
+          const latestStatus = backdrop.querySelector("[data-inquiry-gate-status]");
+          if (latestStatus) latestStatus.textContent = "Google prompt unavailable. Please try again.";
+        }
+      });
       if (!started && status) {
         status.textContent = "Preparing Google sign-in. Please tap again.";
         initGoogleOneTap().catch(() => {});
@@ -753,11 +760,22 @@
     }
   };
 
-  const requestGooglePrompt = (shouldOpenDashboard = false) => {
+  const requestGooglePrompt = (shouldOpenDashboard = false, onUnavailable = null) => {
     if (!googleReady || !window.google?.accounts?.id) return false;
     openDashboardAfterGoogleAuth = shouldOpenDashboard;
-    window.google.accounts.id.prompt();
-    return true;
+    try {
+      window.google.accounts.id.prompt((notification) => {
+        const isNotDisplayed =
+          typeof notification?.isNotDisplayed === "function" && notification.isNotDisplayed();
+        const isSkipped = typeof notification?.isSkippedMoment === "function" && notification.isSkippedMoment();
+        if ((isNotDisplayed || isSkipped) && typeof onUnavailable === "function") {
+          onUnavailable(notification);
+        }
+      });
+      return true;
+    } catch {
+      return false;
+    }
   };
 
   const requestSignInFlow = (options = false) => {
@@ -766,9 +784,21 @@
         ? { shouldOpenDashboard: options, requireGoogle: false }
         : {
             shouldOpenDashboard: Boolean(options?.shouldOpenDashboard),
-            requireGoogle: Boolean(options?.requireGoogle)
+            requireGoogle: Boolean(options?.requireGoogle),
+            onPromptUnavailable: typeof options?.onPromptUnavailable === "function" ? options.onPromptUnavailable : null
           };
-    if (requestGooglePrompt(normalized.shouldOpenDashboard)) return true;
+    const fallbackFromPrompt = () => {
+      openDashboardAfterGoogleAuth = false;
+      if (normalized.requireGoogle) {
+        if (typeof normalized.onPromptUnavailable === "function") {
+          normalized.onPromptUnavailable();
+        }
+        return;
+      }
+      fallbackSignIn(normalized.shouldOpenDashboard);
+      continuePendingInquiry();
+    };
+    if (requestGooglePrompt(normalized.shouldOpenDashboard, fallbackFromPrompt)) return true;
     if (normalized.requireGoogle) return false;
     fallbackSignIn(normalized.shouldOpenDashboard);
     continuePendingInquiry();
