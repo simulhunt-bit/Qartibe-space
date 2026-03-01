@@ -1,0 +1,155 @@
+{
+    "blogPosts":  [
+                      {
+                          "title_en":  "How We Reduce Checkout Drop-Off for Top-Up Brands",
+                          "title_bn":  "How We Reduce Checkout Drop-Off for Top-Up Brands",
+                          "summary_en":  "A practical checklist to fix payment friction, trust gaps, and mobile form issues.",
+                          "summary_bn":  "A practical checklist to fix payment friction, trust gaps, and mobile form issues.",
+                          "date":  "2026-02-01",
+                          "slug": "reduce-checkout-drop-off-top-up",
+                          "url":  "https://qartibe.space/blog/reduce-checkout-drop-off-top-up"
+                      },
+                      {
+                          "title_en":  "Creative Testing Framework for Meta Ads",
+                          "title_bn":  "Creative Testing Framework for Meta Ads",
+                          "summary_en":  "A weekly system to test hooks, formats, and offers without wasting ad budget.",
+                          "summary_bn":  "A weekly system to test hooks, formats, and offers without wasting ad budget.",
+                          "date":  "2026-01-25",
+                          "slug": "creative-testing-framework-meta-ads",
+                          "url":  "https://qartibe.space/blog/creative-testing-framework-meta-ads"
+                      },
+                      {
+                          "title_en":  "E-commerce SEO Plan for Fast Wins in 30 Days",
+                          "title_bn":  "E-commerce SEO Plan for Fast Wins in 30 Days",
+                          "summary_en":  "Page-level optimization priorities that help increase high-intent organic traffic.",
+                          "summary_bn":  "Page-level optimization priorities that help increase high-intent organic traffic.",
+                          "date":  "2026-01-15",
+                          "slug": "ecommerce-seo-plan-fast-wins-30-days",
+                          "url":  "https://qartibe.space/blog/ecommerce-seo-plan-fast-wins-30-days"
+                      }
+                  ],
+    "portfolioProjects":  [
+                              {
+                                  "title_en":  "Top-up Brand Growth Sprint",
+                                  "title_bn":  "Top-up Brand Growth Sprint",
+                                  "slug": "top-up-brand-growth-sprint",
+                                  "summary_en":  "Rebuilt campaign structure, creative testing, and payment flow monitoring.",
+                                  "summary_bn":  "Rebuilt campaign structure, creative testing, and payment flow monitoring.",
+                                  "result_en":  "+38% revenue lift with lower CPA.",
+                                  "result_bn":  "+38% revenue lift with lower CPA.",
+                                  "tags_en":  [
+                                                  "Meta Ads",
+                                                  "Checkout Fixes",
+                                                  "6 Weeks"
+                                              ],
+                                  "tags_bn":  [
+                                                  "Meta Ads",
+                                                  "Checkout Fixes",
+                                                  "6 Weeks"
+                                              ],
+                                  "url":  "https://qartibe.space/portfolio/top-up-brand-growth-sprint"
+                              },
+                              {
+                                  "title_en":  "E-commerce SEO Foundation",
+                                  "title_bn":  "E-commerce SEO Foundation",
+                                  "slug": "ecommerce-seo-foundation",
+                                  "summary_en":  "Keyword mapping, category optimization, and blog topic planning.",
+                                  "summary_bn":  "Keyword mapping, category optimization, and blog topic planning.",
+                                  "result_en":  "+62% organic sessions and +24% conversions.",
+                                  "result_bn":  "+62% organic sessions and +24% conversions.",
+                                  "tags_en":  [
+                                                  "SEO",
+                                                  "Blogs",
+                                                  "90 Days"
+                                              ],
+                                  "tags_bn":  [
+                                                  "SEO",
+                                                  "Blogs",
+                                                  "90 Days"
+                                              ],
+                                  "url":  "https://qartibe.space/portfolio/ecommerce-seo-foundation"
+                              },
+                              {
+                                  "title_en":  "Conversion Optimization Audit",
+                                  "title_bn":  "Conversion Optimization Audit",
+                                  "slug": "conversion-optimization-audit",
+                                  "summary_en":  "Funnel diagnostics, UX fixes, and trust element improvements.",
+                                  "summary_bn":  "Funnel diagnostics, UX fixes, and trust element improvements.",
+                                  "result_en":  "+19% checkout completion.",
+                                  "result_bn":  "+19% checkout completion.",
+                                  "tags_en":  [
+                                                  "CRO",
+                                                  "Analytics",
+                                                  "2 Weeks"
+                                              ],
+                                  "tags_bn":  [
+                                                  "CRO",
+                                                  "Analytics",
+                                                  "2 Weeks"
+                                              ],
+                                  "url":  "https://qartibe.space/portfolio/conversion-optimization-audit"
+                              }
+                          ],
+    "services":  [
+                     {
+                         "title_en":  "Meta Ads + CRO",
+                         "summary_en":  "Campaign setup, creative testing, and landing-page fixes to improve ROAS and checkout completion.",
+                         "highlights":  [
+                                            "Audience and funnel planning",
+                                            "Creative testing workflow",
+                                            "Offer and checkout optimization"
+                                        ],
+                         "inquireLabel":  "Inquire"
+                     },
+                     {
+                         "title_en":  "SEO + Blog Growth",
+                         "summary_en":  "Keyword strategy and content production for sustainable organic traffic and qualified leads.",
+                         "highlights":  [
+                                            "Keyword mapping",
+                                            "On-page optimization",
+                                            "Editorial calendar and publishing"
+                                        ],
+                         "inquireLabel":  "Inquire"
+                     },
+                     {
+                         "title_en":  "Video Ad Editing",
+                         "summary_en":  "Short-form ad video editing and hook variants for fast iteration across campaigns.",
+                         "highlights":  [
+                                            "UGC and product-cut edits",
+                                            "Multiple hook and CTA versions",
+                                            "Platform-ready export packs"
+                                        ],
+                         "inquireLabel":  "Inquire"
+                     },
+                     {
+                         "title_en":  "Social Content Design",
+                         "summary_en":  "Brand-consistent static and carousel creatives designed for both paid and organic performance.",
+                         "highlights":  [
+                                            "Post and carousel templates",
+                                            "Ad creative design system",
+                                            "Monthly asset delivery"
+                                        ],
+                         "inquireLabel":  "Inquire"
+                     },
+                     {
+                         "title_en":  "Payment Support + Funnel QA",
+                         "summary_en":  "Payment-flow health checks, issue triage, and conversion-focused QA across checkout steps.",
+                         "highlights":  [
+                                            "Checkout bug diagnosis",
+                                            "Gateway flow validation",
+                                            "Drop-off monitoring"
+                                        ],
+                         "inquireLabel":  "Inquire"
+                     },
+                     {
+                         "title_en":  "AI-Powered Website",
+                         "summary_en":  "Modern website design and development enhanced with AI tools for content, support, and conversion optimization.",
+                         "highlights":  [
+                                            "AI chatbot and lead capture",
+                                            "Smart content generation workflow",
+                                            "Performance-focused responsive build"
+                                        ],
+                         "inquireLabel":  "Inquire"
+                     }
+                 ]
+}
