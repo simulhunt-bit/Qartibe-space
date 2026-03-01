@@ -360,6 +360,9 @@
         padding: 18px;
         background: rgba(12, 25, 44, 0.58);
       }
+      .qs-inquiry-gate-backdrop[hidden] {
+        display: none;
+      }
       .qs-inquiry-gate-panel {
         width: min(420px, 100%);
         border-radius: 16px;
@@ -590,6 +593,9 @@
         place-items: center;
         padding: 18px;
         background: rgba(12, 25, 44, 0.58);
+      }
+      .qs-dashboard-backdrop[hidden] {
+        display: none;
       }
       .qs-dashboard-panel {
         width: min(520px, 100%);
