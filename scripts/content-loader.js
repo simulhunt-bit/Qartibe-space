@@ -1,9 +1,68 @@
 "use strict";
 
 window.QartibeContentLoader = (() => {
-  const DATA_URL = "content/site-content.json";
-  const CONFIG_URL = "content/contentful-config.json";
+  const DATA_PATH = "content/site-content.json";
+  const CONFIG_PATH = "content/contentful-config.json";
   let cachePromise = null;
+
+  const scriptSrc =
+    typeof document !== "undefined" && document.currentScript && document.currentScript.src
+      ? document.currentScript.src
+      : "";
+  const scriptBaseHref = (() => {
+    if (!scriptSrc) return "";
+    try {
+      return new URL("../", scriptSrc).href;
+    } catch {
+      return "";
+    }
+  })();
+
+  const buildUrlCandidates = (path) => {
+    const cleanPath = String(path || "").replace(/^\/+/, "");
+    if (!cleanPath) return [];
+
+    const candidates = [];
+    if (scriptBaseHref) {
+      try {
+        candidates.push(new URL(cleanPath, scriptBaseHref).toString());
+      } catch {}
+    }
+
+    if (typeof window !== "undefined" && window.location) {
+      try {
+        candidates.push(new URL(`/${cleanPath}`, window.location.origin).toString());
+      } catch {}
+      candidates.push(`/${cleanPath}`);
+      candidates.push(cleanPath);
+    } else {
+      candidates.push(`/${cleanPath}`);
+      candidates.push(cleanPath);
+    }
+
+    return Array.from(new Set(candidates));
+  };
+
+  const fetchJsonWithFallback = async (path, { required = false } = {}) => {
+    const candidates = buildUrlCandidates(path);
+    let lastError = null;
+
+    for (const candidate of candidates) {
+      try {
+        const response = await fetch(candidate, { cache: "no-store" });
+        if (!response.ok) {
+          lastError = new Error(`Failed to load ${candidate}: ${response.status}`);
+          continue;
+        }
+        return await response.json();
+      } catch (error) {
+        lastError = error;
+      }
+    }
+
+    if (required) throw lastError || new Error(`Failed to load required JSON: ${path}`);
+    return null;
+  };
 
   const pick = (...values) => {
     for (const value of values) {
@@ -133,10 +192,7 @@ window.QartibeContentLoader = (() => {
   };
 
   const readLocalData = async () => {
-    const response = await fetch(DATA_URL, { cache: "no-store" });
-    if (!response.ok) throw new Error(`Failed to load local content: ${response.status}`);
-
-    const data = await response.json();
+    const data = await fetchJsonWithFallback(DATA_PATH, { required: true });
     return {
       blogPosts: normalizeLocalBlogPosts(data?.blogPosts),
       portfolioProjects: normalizeLocalPortfolioProjects(data?.portfolioProjects),
@@ -146,9 +202,8 @@ window.QartibeContentLoader = (() => {
 
   const readConfig = async () => {
     try {
-      const response = await fetch(CONFIG_URL, { cache: "no-store" });
-      if (!response.ok) return null;
-      return await response.json();
+      const config = await fetchJsonWithFallback(CONFIG_PATH);
+      return config && typeof config === "object" ? config : null;
     } catch {
       return null;
     }
@@ -452,3 +507,4 @@ window.QartibeContentLoader = (() => {
     }
   };
 })();
+
