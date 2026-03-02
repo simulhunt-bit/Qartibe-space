@@ -26,6 +26,7 @@
   let pendingInquiryAction = null;
   let googleInitPromise = null;
   let googleReady = false;
+  let googleTokenClient = null;
   let openDashboardAfterGoogleAuth = false;
 
   const toCleanString = (value, max = 80) => String(value || "").trim().slice(0, max);
@@ -226,6 +227,19 @@
     } catch {
       return null;
     }
+  };
+
+  const extractGooglePromptReason = (notificationOrReason) => {
+    if (typeof notificationOrReason === "string") {
+      return toCleanString(notificationOrReason, 80);
+    }
+    const notDisplayedReason =
+      typeof notificationOrReason?.getNotDisplayedReason === "function"
+        ? notificationOrReason.getNotDisplayedReason()
+        : "";
+    const skippedReason =
+      typeof notificationOrReason?.getSkippedReason === "function" ? notificationOrReason.getSkippedReason() : "";
+    return toCleanString(notDisplayedReason || skippedReason, 80);
   };
 
   const loadGoogleIdentityScript = async () => {
@@ -486,17 +500,13 @@
     const buildPromptOptions = () => ({
       shouldOpenDashboard: false,
       requireGoogle: true,
-      onPromptUnavailable: (notification) => {
-        const notDisplayedReason =
-          typeof notification?.getNotDisplayedReason === "function" ? notification.getNotDisplayedReason() : "";
-        const skippedReason =
-          typeof notification?.getSkippedReason === "function" ? notification.getSkippedReason() : "";
-        const reason = toCleanString(notDisplayedReason || skippedReason, 80);
+      onPromptUnavailable: (notificationOrReason) => {
+        const reason = extractGooglePromptReason(notificationOrReason);
         if (reason) {
-          setStatus(`Google prompt unavailable (${reason}). Tap Continue with Google again.`);
+          setStatus(`Google sign-in unavailable (${reason}). Tap Continue with Google again.`);
           return;
         }
-        setStatus("Google prompt unavailable. Tap Continue with Google again.");
+        setStatus("Google sign-in unavailable. Tap Continue with Google again.");
       }
     });
 
@@ -800,6 +810,66 @@
     }
   };
 
+  const handleGoogleOAuthToken = async (tokenResponse) => {
+    const accessToken = toCleanString(tokenResponse?.access_token, 1800);
+    if (!accessToken) return false;
+    try {
+      const response = await fetch("https://openidconnect.googleapis.com/v1/userinfo", {
+        cache: "no-store",
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+      if (!response.ok) return false;
+      const payload = await response.json();
+      const displayName =
+        toCleanString(payload?.name, 90) ||
+        toCleanString(payload?.given_name, 90) ||
+        toCleanString(payload?.email, 90);
+      const email = toCleanString(payload?.email, 140);
+      const avatarUrl = toSafeHttpUrl(payload?.picture);
+      completeSignIn({ name: displayName, email, avatarUrl });
+      continuePendingInquiry();
+      if (openDashboardAfterGoogleAuth) {
+        openDashboardAfterGoogleAuth = false;
+        openDashboard();
+      }
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const requestGooglePopupSignIn = ({ shouldOpenDashboard = false, onUnavailable = null } = {}) => {
+    if (!googleTokenClient) return false;
+    openDashboardAfterGoogleAuth = shouldOpenDashboard;
+    try {
+      googleTokenClient.callback = (tokenResponse) => {
+        handleGoogleOAuthToken(tokenResponse).then((isSuccess) => {
+          if (isSuccess) return;
+          openDashboardAfterGoogleAuth = false;
+          if (typeof onUnavailable === "function") {
+            onUnavailable("oauth_profile_unavailable");
+          }
+        });
+      };
+      googleTokenClient.error_callback = (error) => {
+        openDashboardAfterGoogleAuth = false;
+        if (typeof onUnavailable === "function") {
+          const reason = toCleanString(error?.type || error?.message, 80) || "oauth_popup_blocked";
+          onUnavailable(reason);
+        }
+      };
+      googleTokenClient.requestAccessToken({
+        prompt: "select_account"
+      });
+      return true;
+    } catch {
+      openDashboardAfterGoogleAuth = false;
+      return false;
+    }
+  };
+
   const requestGooglePrompt = (shouldOpenDashboard = false, onUnavailable = null) => {
     if (!googleReady || !window.google?.accounts?.id) return false;
     openDashboardAfterGoogleAuth = shouldOpenDashboard;
@@ -827,11 +897,21 @@
             requireGoogle: Boolean(options?.requireGoogle),
             onPromptUnavailable: typeof options?.onPromptUnavailable === "function" ? options.onPromptUnavailable : null
           };
-    const fallbackFromPrompt = () => {
+    if (normalized.requireGoogle) {
+      if (
+        requestGooglePopupSignIn({
+          shouldOpenDashboard: normalized.shouldOpenDashboard,
+          onUnavailable: normalized.onPromptUnavailable
+        })
+      ) {
+        return true;
+      }
+    }
+    const fallbackFromPrompt = (notification) => {
       openDashboardAfterGoogleAuth = false;
       if (normalized.requireGoogle) {
         if (typeof normalized.onPromptUnavailable === "function") {
-          normalized.onPromptUnavailable();
+          normalized.onPromptUnavailable(notification);
         }
         return;
       }
@@ -839,7 +919,12 @@
       continuePendingInquiry();
     };
     if (requestGooglePrompt(normalized.shouldOpenDashboard, fallbackFromPrompt)) return true;
-    if (normalized.requireGoogle) return false;
+    if (normalized.requireGoogle) {
+      if (typeof normalized.onPromptUnavailable === "function") {
+        normalized.onPromptUnavailable("google_signin_client_unavailable");
+      }
+      return false;
+    }
     fallbackSignIn(normalized.shouldOpenDashboard);
     continuePendingInquiry();
     return true;
@@ -861,12 +946,14 @@
       const config = await readAuthConfig();
       const clientId = toCleanString(config?.googleClientId, 220);
       if (!clientId) {
+        googleTokenClient = null;
         googleReady = false;
         return false;
       }
 
       const loaded = await loadGoogleIdentityScript();
       if (!loaded || !window.google?.accounts?.id) {
+        googleTokenClient = null;
         googleReady = false;
         return false;
       }
@@ -879,12 +966,23 @@
           cancel_on_tap_outside: true,
           context: "signin"
         });
+        if (window.google?.accounts?.oauth2) {
+          googleTokenClient = window.google.accounts.oauth2.initTokenClient({
+            client_id: clientId,
+            scope: "openid email profile",
+            callback: () => {},
+            error_callback: () => {}
+          });
+        } else {
+          googleTokenClient = null;
+        }
         googleReady = true;
         if (promptAfterInit) {
           window.google.accounts.id.prompt();
         }
         return true;
       } catch {
+        googleTokenClient = null;
         googleReady = false;
         return false;
       }
