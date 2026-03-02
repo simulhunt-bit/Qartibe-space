@@ -140,10 +140,10 @@
       </div>
     </footer>
 
-    <script src="scripts/header-auth.js" defer></script>
-    <script src="scripts/site-nav.js" defer></script>
-    <script src="scripts/access-gates.js" defer></script>
-    <script src="scripts/content-loader.js"></script>
+    <script src="/scripts/header-auth.js" defer></script>
+    <script src="/scripts/site-nav.js" defer></script>
+    <script src="/scripts/access-gates.js" defer></script>
+    <script src="/scripts/content-loader.js"></script>
     <script>
       const canonicalTag = document.querySelector('link[rel="canonical"]');
       const ogTitleTag = document.querySelector('meta[property="og:title"]');
@@ -405,9 +405,16 @@
         `;
       };
 
+      const getBlogPostsSafe = async () => {
+        const loader = window.QartibeContentLoader;
+        if (!loader || typeof loader.getBlogPosts !== "function") return [];
+        const posts = await loader.getBlogPosts();
+        return Array.isArray(posts) ? posts : [];
+      };
+
       (async () => {
         try {
-          const posts = await window.QartibeContentLoader.getBlogPosts();
+          const posts = await getBlogPostsSafe();
           const key = getPostKey();
           const slugToPost = new Map();
           const idToPost = new Map();
