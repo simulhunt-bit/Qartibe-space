@@ -1,0 +1,86 @@
+{
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "post",
+          "value": "(?<post>[^&]+)"
+        }
+      ],
+      "destination": "/blog/:post",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "project",
+          "value": "(?<project>[^&]+)"
+        }
+      ],
+      "destination": "/portfolio/:project",
+      "permanent": true
+    },
+    {
+      "source": "/blog.html",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio.html",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/services.html",
+      "destination": "/services",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/blog",
+      "destination": "/blog.html"
+    },
+    {
+      "source": "/blog/",
+      "destination": "/blog.html"
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/blog.html"
+    },
+    {
+      "source": "/portfolio",
+      "destination": "/portfolio.html"
+    },
+    {
+      "source": "/portfolio/",
+      "destination": "/portfolio.html"
+    },
+    {
+      "source": "/portfolio/:path*",
+      "destination": "/portfolio.html"
+    },
+    {
+      "source": "/services",
+      "destination": "/services.html"
+    },
+    {
+      "source": "/services/",
+      "destination": "/services.html"
+    },
+    {
+      "source": "/services/:path*",
+      "destination": "/services.html"
+    }
+  ]
+}

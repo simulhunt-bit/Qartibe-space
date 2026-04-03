@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Qartibe Space | Digital Growth Partner</title>
+    <meta name="description" content="Qartibe Space helps e-commerce and top-up brands grow with ads, CRO, SEO, and content." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Qartibe Space" />
+    <meta name="theme-color" content="#0f2540" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Qartibe Space | Digital Growth Partner" />
+    <meta property="og:description" content="Qartibe Space helps e-commerce and top-up brands grow with ads, CRO, SEO, and content." />
+    <meta property="og:url" content="https://qartibe.space/" />
+    <meta property="og:image" content="https://qartibe.space/logo.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Qartibe Space | Digital Growth Partner" />
+    <meta name="twitter:description" content="Qartibe Space helps e-commerce and top-up brands grow with ads, CRO, SEO, and content." />
+    <meta name="twitter:image" content="https://qartibe.space/logo.svg" />
+    <link rel="canonical" href="https://qartibe.space/" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <link rel="preload" as="image" href="logo.svg" />
+    <link rel="prefetch" href="/blog" as="document" />
+    <link rel="prefetch" href="/portfolio" as="document" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+:root { --bg:#f3f8ff; --ink:#0f2550; --muted:#4f6182; --brand:#1f61c3; --line:#c9d8ef; --font-body:"Manrope", "Segoe UI", Arial, sans-serif; --font-display:"Sora", "Segoe UI", Arial, sans-serif; }
+      * { box-sizing: border-box; }
+      body { margin:0; font-family:var(--font-body); font-size:16px; line-height:1.65; letter-spacing:.01em; color:var(--ink); background:var(--bg); position:relative; overflow-x:hidden; }
+      body::before {
+        content:"";
+        position:fixed;
+        inset:0;
+        width:100%;
+        height:100%;
+        z-index:-2;
+        pointer-events:none;
+      }
+      body::after {
+        content:"";
+        position:fixed;
+        inset:0;
+        width:100%;
+        height:100%;
+        z-index:-1;
+        background:linear-gradient(135deg, rgba(237,244,255,.85) 0%, rgba(216,232,255,.85) 100%);
+        pointer-events:none;
+      }
+      h1, h2, h3, h4, h5, h6 { font-family:var(--font-display); line-height:1.18; letter-spacing:-.015em; text-wrap:balance; }
+      p, li { line-height:1.7; }
+      .container { max-width:1080px; margin:0 auto; padding:0 16px; }
+      .nav { position:sticky; top:0; z-index:10; background:#133f86; color:#fff; border-bottom:1px solid #2b5698; }
+      .nav-inner { display:flex; align-items:center; gap:12px; padding:10px 0; }
+      .brand-link { display:flex; align-items:center; gap:10px; font-weight:700; font-family:var(--font-display); letter-spacing:-.01em; color:#fff; text-decoration:none; }
+      .nav-links { margin-left:auto; display:flex; gap:8px; }
+      .nav-links a { padding:8px 10px; border-radius:10px; background:rgba(255,255,255,.09); color:#fff; text-decoration:none; font-family:var(--font-display); font-weight:600; font-size:.95rem; letter-spacing:.01em; }
+      .nav-cta-link { background:var(--brand) !important; color:#fff; }
+      .menu-toggle { border:1px solid #3a66a7; border-radius:10px; background:#1b4d98; color:#fff; padding:8px 10px; }
+      .nav-actions { display:flex; gap:8px; }
+      .nav-menu-toggle { display:none; }
+
+      .bg-video {
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        z-index:-2;
+        object-fit:cover;
+        opacity:.45;
+        pointer-events:none;
+      }
+      .hero {
+        position:relative;
+        overflow:hidden;
+        isolation:isolate;
+        width:100vw;
+        margin-left:calc(50% - 50vw);
+        padding:56px 0 30px;
+        border-radius:0;
+        background:transparent;
+      }
+      .hero::after {
+        content:"";
+        position:absolute;
+        inset:0;
+        z-index:1;
+        background:linear-gradient(105deg, rgba(243,248,255,.4) 0%, rgba(243,248,255,.2) 55%, rgba(243,248,255,.3) 100%);
+      }
+      .hero-video {
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        z-index:0;
+        opacity:.68;
+        pointer-events:none;
+        animation:heroVideoPulse 12s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+      }
+      .hero-content {
+        position:relative;
+        z-index:2;
+        max-width:1080px;
+        margin:0 auto;
+        padding:0 16px;
+      }
+      .hero h1 { font-size:clamp(2rem,5vw,3rem); margin:0 0 12px; }
+      @keyframes heroVideoPulse {
+        0% { opacity:.65; transform:scale(1); }
+        25% { opacity:.68; transform:scale(1.008); }
+        50% { opacity:.72; transform:scale(1.012); }
+        75% { opacity:.68; transform:scale(1.008); }
+        100% { opacity:.65; transform:scale(1); }
+      }
+      @keyframes glowingBorder {
+        0% { box-shadow:0 0 8px rgba(31,97,195,.15),inset 0 0 12px rgba(31,97,195,.08); }
+        50% { box-shadow:0 0 16px rgba(31,97,195,.35),inset 0 0 20px rgba(31,97,195,.15); }
+        100% { box-shadow:0 0 8px rgba(31,97,195,.15),inset 0 0 12px rgba(31,97,195,.08); }
+      }
+      @keyframes fadeInUp {
+        from { opacity:0; transform:translateY(20px); }
+        to { opacity:1; transform:translateY(0); }
+      }
+      .muted { color:var(--muted); }
+      .grid { display:grid; gap:14px; }
+      .grid-2 { grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); }
+      .card { border:1px solid rgba(201,216,239,.6); border-radius:14px; background:rgba(255,255,255,.7); padding:16px; backdrop-filter:blur(10px); animation:glowingBorder 3s ease-in-out infinite; opacity:0; }
+      .card.in-view { animation:fadeInUp .6s ease-out forwards,glowingBorder 3s ease-in-out infinite; }
+      .card.trending-top { border-color:rgba(31,97,195,.8); box-shadow:0 0 20px rgba(31,97,195,.25),inset 0 0 16px rgba(31,97,195,.1); }
+      .trend-badge { display:inline-flex; margin-bottom:8px; padding:4px 8px; border-radius:999px; font-size:12px; font-weight:700; color:#fff; background:var(--brand); }
+      .section { padding:24px 0; position:relative; z-index:1; }
+      .btn { display:inline-block; padding:10px 14px; border-radius:10px; background:var(--brand); color:#fff; text-decoration:none; border:none; font-family:var(--font-display); font-weight:600; letter-spacing:.01em; }
+      .btn-outline { background:#fff; color:var(--ink); border:1px solid var(--line); }
+      .action-row { display:flex; gap:10px; flex-wrap:wrap; }
+      footer { border-top:1px solid var(--line); margin-top:28px; padding:18px 0; color:var(--muted); position:relative; z-index:1; background:rgba(255,255,255,.5); backdrop-filter:blur(10px); }
+      .feedback-section-wrap { margin-bottom:28px; }
+      .ai-service-highlight { background:linear-gradient(135deg, rgba(31,97,195,.12) 0%, rgba(31,97,195,.06) 100%); border:2px solid rgba(31,97,195,.3); border-radius:16px; padding:32px; position:relative; z-index:1; text-align:center; }
+      .ai-service-highlight h2 { margin:0 0 12px; font-size:1.6rem; }
+      .ai-service-highlight p { margin:0 0 16px; color:var(--muted); line-height:1.6; max-width:600px; margin-left:auto; margin-right:auto; }
+      .ai-service-highlight ul { font-size:14px; }
+      .ai-service-highlight li strong { color:var(--brand); margin-right:8px; }
+      .feedback-add-btn-container { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+      .feedback-add-btn-container h3 { margin:0; }
+      .feedback-add-btn { width:40px; height:40px; border-radius:50%; background:var(--brand); color:#fff; border:none; font-size:28px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform .2s; flex-shrink:0; }
+      .feedback-add-btn:hover:not(:disabled) { transform:scale(1.1); }
+      .feedback-add-btn:disabled { opacity:.5; cursor:not-allowed; }
+      @keyframes scrollLoop {
+        0% { transform:translateX(0); }
+        100% { transform:translateX(-50%); }
+      }
+      .feedback-slider-wrap { position:relative; overflow:hidden; border-radius:14px; background:rgba(255,255,255,.7); padding:20px 0; }
+      .feedback-slider { display:flex; gap:16px; animation:scrollLoop 40s linear infinite; width:fit-content; }
+      .feedback-slider:hover { animation-play-state:paused; }
+      .feedback-item { flex-shrink:0; width:300px; border:1px solid rgba(201,216,239,.6); border-radius:12px; background:rgba(255,255,255,.8); padding:16px; backdrop-filter:blur(10px); }
+      .feedback-item-text { margin:0 0 8px; line-height:1.5; font-size:14px; }
+      .feedback-item-author { font-size:12px; color:var(--muted); margin:0; }
+      .feedback-modal { position:fixed; inset:0; z-index:1500; display:none; align-items:center; justify-content:center; padding:18px; background:rgba(12, 25, 44, 0.58); }
+      .feedback-modal[data-open="true"] { display:flex; }
+      .feedback-modal-panel { width:min(420px, 100%); border-radius:16px; border:1px solid #d7dbe3; background:#ffffff; color:#11243d; padding:24px; box-shadow:0 26px 56px rgba(10, 23, 40, 0.22); }
+      .feedback-modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+      .feedback-modal-header h2 { margin:0; font-size:1.25rem; }
+      .feedback-modal-close { background:none; border:none; font-size:28px; color:#11243d; cursor:pointer; }
+      .feedback-modal-label { display:block; margin:12px 0 6px; font-weight:600; font-size:14px; }
+      .feedback-modal-textarea { width:100%; padding:10px; border:1px solid #cad2de; border-radius:10px; font-family:inherit; resize:vertical; min-height:100px; box-sizing:border-box; }
+      .feedback-modal-counter { font-size:12px; color:var(--muted); margin-top:4px; }
+      .feedback-modal-counter.warning { color:#d9534f; }
+      .feedback-modal-footer { display:flex; gap:10px; margin-top:16px; }
+      .feedback-modal-footer button { flex:1; padding:10px; border:1px solid #cad2de; border-radius:10px; font-weight:600; cursor:pointer; background:#fff; }
+      .feedback-modal-footer .btn-submit { background:var(--brand); color:#fff; border:none; }
+      .feedback-modal-footer button:disabled { opacity:.5; cursor:not-allowed; }
+      .feedback-thank-you { position:fixed; inset:0; z-index:2000; display:none; align-items:center; justify-content:center; padding:18px; background:rgba(12, 25, 44, 0.58); }
+      .feedback-thank-you[data-open="true"] { display:flex; }
+      .feedback-thank-you-panel { width:min(380px, 100%); border-radius:16px; background:#ffffff; color:#11243d; padding:40px 24px; text-align:center; box-shadow:0 26px 56px rgba(10, 23, 40, 0.22); border:1px solid #d7dbe3; }
+      .feedback-thank-you-panel h2 { margin:0 0 12px; font-size:1.4rem; }
+      .feedback-thank-you-panel p { margin:0; color:var(--muted); }
+      @media (max-width: 860px) {
+        .hero { padding:36px 0 24px; }
+        .nav-inner { flex-wrap:wrap; }
+        .nav-menu-toggle { display:inline-flex; margin-left:auto; }
+        .nav-actions { margin-left:0; }
+        .nav-links {
+          display:none;
+          width:100%;
+          margin-left:0;
+          order:4;
+          flex-direction:column;
+          gap:6px;
+          padding-top:4px;
+        }
+        .nav-links.open { display:flex; }
+        .nav-links a { display:block; width:100%; }
+        .feedback-item { width:240px; }
+        .feedback-add-btn-container { flex-wrap:wrap; }
+        .ai-service-highlight { padding:24px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-video { animation:none; opacity:.3; }
+        .feedback-slider { animation:none; }
+      }
+    </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Qartibe Space",
+        "url": "https://qartibe.space/",
+        "logo": "https://qartibe.space/logo.svg",
+        "sameAs": ["https://www.facebook.com/qartibe/"]
+      }
+    </script>
+  </head>
+  <body data-page="home">
+    <video class="bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+      <source src="hero-video.mp4" type="video/mp4" />
+      <source src="hero-video.webm" type="video/webm" />
+    </video>
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand-link" href="/" aria-label="Qartibe Space home">
+          <img src="logo.svg" alt="Qartibe Space" width="28" height="28" decoding="async" style="border-radius:50%;background:#eaf2ff" />
+          <span>Qartibe Space</span>
+        </a>
+        <nav class="nav-links" id="siteMenu">
+          <a href="/">Home</a>
+          <a href="/portfolio">Portfolio</a>
+          <a href="/blog">Blog</a>
+          <a href="/services">Services</a>
+          <a class="nav-cta-link" href="/#contact">Contact</a>
+        </nav>
+        <div class="nav-actions"></div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <video id="heroVideo" class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+          <source src="hero-video.mp4" type="video/mp4" />
+          <source src="hero-video.webm" type="video/webm" />
+          <source src="hero-video" type="video/mp4" />
+        </video>
+        <div class="hero-content">
+          <h1>Digital growth partner for e-commerce & brands</h1>
+          <p class="muted">We combine Meta Ads, payment support, social content design, video ad editing, SEO, and blog systems for compounding growth.</p>
+          <div class="action-row">
+            <a class="btn" href="/portfolio">See Portfolio</a>
+            <a class="btn btn-outline" href="/blog">Read Blog</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="ai-service">
+        <div class="feedback-section-wrap">
+          <div class="feedback-add-btn-container">
+            <button class="feedback-add-btn" id="feedbackAddBtn" title="Add your feedback" disabled>+</button>
+            <h3>Share Your Feedback</h3>
+          </div>
+          <div class="feedback-slider-wrap">
+            <div class="feedback-slider" id="feedbackSlider"></div>
+          </div>
+        </div>
+
+        <div class="ai-service-highlight">
+          <h2>AI-Hosted Website Service</h2>
+          <p>Build, manage, and scale your website with intelligent AI automation. Our AI-hosted platform combines automated content management, smart optimization, and real-time performance monitoring to keep your site running at peak efficiency.</p>
+          <ul style="list-style:none;padding:0;margin:16px 0;text-align:left;display:inline-block;">
+            <li style="padding:8px 0;"><strong>✓</strong> Smart content organization with AI tagging</li>
+            <li style="padding:8px 0;"><strong>✓</strong> Automated SEO optimization</li>
+            <li style="padding:8px 0;"><strong>✓</strong> Real-time performance analytics</li>
+            <li style="padding:8px 0;"><strong>✓</strong> Intelligent caching & CDN integration</li>
+            <li style="padding:8px 0;"><strong>✓</strong> 24/7 uptime monitoring</li>
+          </ul>
+          <a class="btn" href="#contact" style="margin-top:16px;">Learn More</a>
+        </div>
+      </section>
+
+      <section id="services" class="section">
+        <h2>Services</h2>
+        <p class="muted">Top 3 trending services based on most clicks.</p>
+        <div id="serviceCards" class="grid grid-2">
+          <article class="card"><p class="muted">Loading services...</p></article>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="card">
+          <h2>Contact</h2>
+          <p class="muted">Tell us your goal and timeline.</p>
+          <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="ac97bac0-9a10-47aa-8a0b-61c956ecdf01" />
+            <input type="hidden" name="subject" value="New Contact Submission - Qartibe Space" />
+            <input type="hidden" name="logged_gmail" value="" />
+            <input type="hidden" name="dashboard_name" value="" />
+            <input type="hidden" name="dashboard_location" value="" />
+            <input type="hidden" name="dashboard_number" value="" />
+            <input type="hidden" name="dashboard_recent_inquiry" value="" />
+            <input type="hidden" name="submission_page" value="" />
+            <input type="hidden" name="submission_time_utc" value="" />
+            <input type="text" name="name" placeholder="Your name" required style="width:100%;padding:10px;margin:6px 0;" />
+            <input type="email" name="email" placeholder="Email" required style="width:100%;padding:10px;margin:6px 0;" />
+            <textarea name="message" rows="4" placeholder="Project details" required style="width:100%;padding:10px;margin:6px 0;"></textarea>
+            <button class="btn" type="submit">Submit</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <div class="feedback-modal" id="feedbackModal" data-open="false">
+      <div class="feedback-modal-panel">
+        <div class="feedback-modal-header">
+          <h2>Share Your Feedback</h2>
+          <button class="feedback-modal-close" id="feedbackModalClose" aria-label="Close">×</button>
+        </div>
+        <label class="feedback-modal-label" for="feedbackText">Your Feedback (max 31 words)</label>
+        <textarea class="feedback-modal-textarea" id="feedbackText" placeholder="Share your thoughts about our service..."></textarea>
+        <div class="feedback-modal-counter" id="feedbackCounter">0 / 31 words</div>
+        <div class="feedback-modal-footer">
+          <button id="feedbackModalCancel">Cancel</button>
+          <button class="btn-submit" id="feedbackModalSubmit" disabled>Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-thank-you" id="feedbackThankYou" data-open="false">
+      <div class="feedback-thank-you-panel">
+        <h2>Thank You! 🙏</h2>
+        <p>Thank you for your feedback! It helps us improve.</p>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        &copy; 2026 Qartibe Space. All rights reserved.
+        <a
+          href="https://www.facebook.com/qartibe/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Official Facebook page"
+          style="display:inline-flex;align-items:center;gap:6px;margin-left:12px;color:inherit;text-decoration:none;"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.62.77-1.62 1.55V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"
+            />
+          </svg>
+          <span>Official Facebook</span>
+        </a>
+      </div>
+    </footer>
+
+    <script src="scripts/header-auth.js" defer></script>
+    <script src="scripts/site-nav.js" defer></script>
+    <script src="scripts/content-loader.js"></script>
+    <script src="scripts/access-gates.js" defer></script>
+    <script>
+      (() => {
+        const heroVideo = document.getElementById("heroVideo");
+        if (!(heroVideo instanceof HTMLVideoElement)) return;
+
+        heroVideo.defaultMuted = true;
+        heroVideo.muted = true;
+
+        const startPlayback = () => {
+          const playPromise = heroVideo.play();
+          if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(() => {});
+          }
+        };
+
+        if (heroVideo.readyState >= 2) {
+          startPlayback();
+        } else {
+          heroVideo.addEventListener("canplay", startPlayback, { once: true });
+        }
+
+        document.addEventListener("visibilitychange", () => {
+          if (!document.hidden && heroVideo.paused) startPlayback();
+        });
+      })();
+    </script>
+    <script>
+      (() => {
+        const PROFILE_STORAGE_KEY = "qartibe_user_profile";
+        const form = document.querySelector('#contact form[action*="web3forms"]');
+        if (!form) return;
+
+        const toCleanString = (value, max) => String(value || "").trim().slice(0, max);
+        const getHiddenField = (name) => form.querySelector(`input[type="hidden"][name="${name}"]`);
+
+        const readProfile = () => {
+          try {
+            const raw = localStorage.getItem(PROFILE_STORAGE_KEY);
+            if (!raw) return {};
+            const parsed = JSON.parse(raw);
+            return parsed && typeof parsed === "object" ? parsed : {};
+          } catch {
+            return {};
+          }
+        };
+
+        const fillHiddenSubmissionFields = () => {
+          const profile = readProfile();
+          const lastActionLabel = toCleanString(profile?.lastAction?.label, 140);
+          const lastActionAt = Number(profile?.lastAction?.at);
+          const recentInquiry =
+            lastActionLabel && Number.isFinite(lastActionAt)
+              ? `${lastActionLabel} (${new Date(lastActionAt).toISOString()})`
+              : lastActionLabel;
+
+          const values = {
+            logged_gmail: toCleanString(profile?.email, 140),
+            dashboard_name: toCleanString(profile?.name, 90),
+            dashboard_location: toCleanString(profile?.location, 90),
+            dashboard_number: toCleanString(profile?.number, 30),
+            dashboard_recent_inquiry: toCleanString(recentInquiry, 190),
+            submission_page: toCleanString(window.location.href, 300),
+            submission_time_utc: new Date().toISOString()
+          };
+
+          Object.entries(values).forEach(([name, value]) => {
+            const field = getHiddenField(name);
+            if (!field) return;
+            field.value = value;
+          });
+        };
+
+        fillHiddenSubmissionFields();
+        form.addEventListener("submit", fillHiddenSubmissionFields, { capture: true });
+        window.addEventListener("qs-auth-state", fillHiddenSubmissionFields);
+      })();
+    </script>
+    <script>
+      const COUNTER_NAMESPACE = "qartibe-space-services";
+      const COUNTER_API_BASE = "https://api.counterapi.dev/v1";
+      const TRENDING_LIMIT = 3;
+
+      const escapeHtml = (value) =>
+        String(value || "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+
+      const normalizeServiceKey = (value) =>
+        String(value || "")
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9-]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+
+      const getServiceKey = (service) => normalizeServiceKey(service?.slug || service?.id || service?.title_en || "");
+
+      const getCounterUrl = (key, shouldIncrement = false) => {
+        const base = `${COUNTER_API_BASE}/${encodeURIComponent(COUNTER_NAMESPACE)}/${encodeURIComponent(key)}`;
+        return shouldIncrement ? `${base}/up` : base;
+      };
+
+      const readSharedClickCount = async (key) => {
+        if (!key) return 0;
+        try {
+          const response = await fetch(getCounterUrl(key), { cache: "no-store" });
+          if (!response.ok) return 0;
+          const data = await response.json();
+          return Number(data?.count || 0);
+        } catch {
+          return 0;
+        }
+      };
+
+      const getTrendingServices = async (services) => {
+        const ranked = await Promise.all(
+          services.map(async (service, index) => {
+            const key = getServiceKey(service);
+            const clicks = await readSharedClickCount(key);
+            return { service, index, key, clicks };
+          })
+        );
+        return ranked
+          .sort((a, b) => {
+            if (b.clicks !== a.clicks) return b.clicks - a.clicks;
+            return a.index - b.index;
+          })
+          .slice(0, TRENDING_LIMIT);
+      };
+
+      const renderServiceCards = async (services) => {
+        const root = document.getElementById("serviceCards");
+        if (!root) return;
+        if (!services.length) {
+          root.innerHTML = '<article class="card"><p class="muted">No services available yet.</p></article>';
+          return;
+        }
+
+        const trending = await getTrendingServices(services);
+        const topClicks = trending.length ? trending[0].clicks : 0;
+
+        root.innerHTML = trending
+          .map((item, rank) => {
+            const service = item.service;
+            const label = String(service.inquireLabel || "Inquire");
+            const badge = topClicks > 0 ? `<span class="trend-badge">Trending #${rank + 1}</span>` : "";
+            const cardClass = rank === 0 && topClicks > 0 ? "card trending-top" : "card";
+            return `
+              <article class="${cardClass}">
+                ${badge}
+                <h3>${escapeHtml(service.title_en || "Service")}</h3>
+                <p class="muted">${escapeHtml(service.summary_en || "")}</p>
+                <a class="btn js-service-inquire" href="#contact" data-service-key="${escapeHtml(item.key)}">${escapeHtml(label)}</a>
+              </article>
+            `;
+          })
+          .join("");
+      };
+
+      const recordSharedClick = (key) => {
+        if (!key) return;
+        fetch(getCounterUrl(key, true), { cache: "no-store", keepalive: true }).catch(() => {});
+      };
+
+      const wireServiceClickTracking = () => {
+        const root = document.getElementById("serviceCards");
+        if (!root || root.dataset.clickTrackingBound === "true") return;
+        root.dataset.clickTrackingBound = "true";
+        root.addEventListener("click", (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+          const link = target.closest(".js-service-inquire");
+          if (!link) return;
+          const key = String(link.getAttribute("data-service-key") || "").trim();
+          if (!key) return;
+          recordSharedClick(key);
+        });
+      };
+
+      (async () => {
+        try {
+          const services = await window.QartibeContentLoader.getServices();
+          await renderServiceCards(services);
+          wireServiceClickTracking();
+          setInterval(() => {
+            renderServiceCards(services).catch(() => {});
+          }, 15000);
+        } catch {
+          const root = document.getElementById("serviceCards");
+          if (root) {
+            root.innerHTML = '<article class="card"><p class="muted">Unable to load services.</p></article>';
+          }
+        }
+      })();
+    </script>
+    <script>
+      (() => {
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px 0px -50px 0px",
+          threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+            }
+          });
+        }, observerOptions);
+
+        const cards = document.querySelectorAll(".card");
+        cards.forEach((card) => observer.observe(card));
+
+        window.addEventListener("scroll", () => {
+          const bgVideo = document.querySelector(".bg-video");
+          if (!bgVideo) return;
+          const scrollY = window.scrollY;
+          bgVideo.style.transform = `translateY(${scrollY * 0.5}px)`;
+        });
+      })();
+    </script>
+    <script>
+      (() => {
+        // Sample feedback data to display
+        const sampleFeedback = [
+          { text: "Excellent service and professional team. Highly recommended!", author: "Ahmed" },
+          { text: "Great digital solutions. They understood our goals perfectly.", author: "Fatima" },
+          { text: "Really impressed with the quality and attention to detail.", author: "Mohammed" },
+          { text: "The best investment we made for our business. Outstanding results!", author: "Sarah" },
+          { text: "Professional, responsive, and results-oriented. 5 stars!", author: "Karim" }
+        ];
+
+        const feedbackSlider = document.getElementById("feedbackSlider");
+        const feedbackModal = document.getElementById("feedbackModal");
+        const feedbackThankYou = document.getElementById("feedbackThankYou");
+        const feedbackAddBtn = document.getElementById("feedbackAddBtn");
+        const feedbackModalClose = document.getElementById("feedbackModalClose");
+        const feedbackModalCancel = document.getElementById("feedbackModalCancel");
+        const feedbackModalSubmit = document.getElementById("feedbackModalSubmit");
+        const feedbackText = document.getElementById("feedbackText");
+        const feedbackCounter = document.getElementById("feedbackCounter");
+
+        const MAX_WORDS = 31;
+        const FEEDBACK_STORAGE_KEY = "qartibe_user_feedback";
+
+        // Initialize slider with sample feedback
+        const initSlider = () => {
+          if (!feedbackSlider) return;
+          feedbackSlider.innerHTML = sampleFeedback
+            .map(item => `
+              <div class="feedback-item">
+                <p class="feedback-item-text">"${item.text}"</p>
+                <p class="feedback-item-author">— ${item.author}</p>
+              </div>
+            `)
+            .join("");
+          
+          // Duplicate items for infinite scroll effect
+          const itemsHTML = feedbackSlider.innerHTML;
+          feedbackSlider.innerHTML = itemsHTML + itemsHTML;
+        };
+
+        // Check if user is authenticated
+        const isUserAuthenticated = () => {
+          try {
+            const session = sessionStorage.getItem("AUTH_SESSION_KEY");
+            return session !== null && session !== undefined && session !== "";
+          } catch {
+            return false;
+          }
+        };
+
+        // Update button state based on auth
+        const updateButtonState = () => {
+          const isAuth = isUserAuthenticated();
+          if (feedbackAddBtn) {
+            feedbackAddBtn.disabled = !isAuth;
+            feedbackAddBtn.title = isAuth ? "Add your feedback" : "Sign in to add feedback";
+          }
+        };
+
+        // Update word counter
+        const updateCounter = () => {
+          if (!feedbackText) return;
+          const text = feedbackText.value.trim();
+          const words = text.split(/\s+/).filter(w => w.length > 0).length;
+          const isWarning = words > MAX_WORDS;
+          
+          if (feedbackCounter) {
+            feedbackCounter.textContent = `${words} / ${MAX_WORDS} words`;
+            feedbackCounter.classList.toggle("warning", isWarning);
+          }
+
+          // Disable submit if over limit
+          if (feedbackModalSubmit) {
+            feedbackModalSubmit.disabled = words === 0 || isWarning || words > MAX_WORDS;
+          }
+        };
+
+        // Open modal
+        const openModal = () => {
+          if (!isUserAuthenticated()) {
+            // Trigger sign in if not authenticated
+            window.QartibeAuth?.triggerSignInFromGate?.();
+            return;
+          }
+          if (feedbackModal) {
+            feedbackModal.setAttribute("data-open", "true");
+            feedbackText?.focus();
+          }
+        };
+
+        // Close modal
+        const closeModal = () => {
+          if (feedbackModal) {
+            feedbackModal.setAttribute("data-open", "false");
+            if (feedbackText) feedbackText.value = "";
+            updateCounter();
+          }
+        };
+
+        // Show thank you message
+        const showThankYou = () => {
+          if (feedbackThankYou) {
+            feedbackThankYou.setAttribute("data-open", "true");
+            setTimeout(() => {
+              feedbackThankYou.setAttribute("data-open", "false");
+            }, 3000);
+          }
+        };
+
+        // Submit feedback
+        const submitFeedback = () => {
+          const text = feedbackText?.value.trim() || "";
+          const words = text.split(/\s+/).filter(w => w.length > 0).length;
+
+          if (words === 0 || words > MAX_WORDS) {
+            return;
+          }
+
+          try {
+            // Store feedback in localStorage
+            const feedback = {
+              text: text,
+              author: "You",
+              timestamp: new Date().toISOString()
+            };
+
+            const existingFeedback = JSON.parse(localStorage.getItem(FEEDBACK_STORAGE_KEY) || "[]");
+            if (Array.isArray(existingFeedback)) {
+              existingFeedback.push(feedback);
+              localStorage.setItem(FEEDBACK_STORAGE_KEY, JSON.stringify(existingFeedback));
+            }
+          } catch (e) {
+            console.error("Failed to store feedback:", e);
+          }
+
+          closeModal();
+          showThankYou();
+        };
+
+        // Event listeners
+        if (feedbackAddBtn) {
+          feedbackAddBtn.addEventListener("click", openModal);
+        }
+
+        if (feedbackModalClose) {
+          feedbackModalClose.addEventListener("click", closeModal);
+        }
+
+        if (feedbackModalCancel) {
+          feedbackModalCancel.addEventListener("click", closeModal);
+        }
+
+        if (feedbackText) {
+          feedbackText.addEventListener("input", updateCounter);
+        }
+
+        if (feedbackModalSubmit) {
+          feedbackModalSubmit.addEventListener("click", submitFeedback);
+        }
+
+        // Close modal on backdrop click
+        if (feedbackModal) {
+          feedbackModal.addEventListener("click", (e) => {
+            if (e.target === feedbackModal) {
+              closeModal();
+            }
+          });
+        }
+
+        // Update auth state on auth changes
+        window.addEventListener("qs-auth-state", updateButtonState);
+
+        // Initialize
+        initSlider();
+        updateButtonState();
+      })();
+    </script>
+  </body>
+</html>
+
+
+
+
+
