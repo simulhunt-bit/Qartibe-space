@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "spaceId": "896ogkdd2dda",
+  "deliveryToken": "cGSiOuLE-veRha5wqs6JDnqY-z05clBbigEYd8m69-o",
+  "environment": "master",
+  "contentTypes": {
+    "blogPosts": [
+      "article",
+      "marketingPost"
+    ],
+    "portfolioProjects": [
+      "campaignCaseStudy"
+    ]
+  }
+}
